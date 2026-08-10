@@ -37,6 +37,9 @@
     if(reopenAfterLanguageChange && window.matchMedia('(max-width: 820px)').matches){
       openMenu();
     }
+    // Retira el estado previo al primer pintado una vez que el menú real ya
+    // está abierto. Así ES ↔ EN cambia el texto sin cerrar/reabrir la cortina.
+    document.documentElement.classList.remove('language-menu-pending');
 
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&side.classList.contains('open'))closeMenu();});
   }
