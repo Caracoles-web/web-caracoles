@@ -17,7 +17,27 @@
       document.body.classList.add('mobile-menu-open');
     };
     btn.addEventListener('click',()=>side.classList.contains('open')?closeMenu():openMenu());
-    side.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+    // Al cambiar ES ↔ EN desde la cortina móvil, la página de destino
+    // recupera el menú abierto para que el usuario pueda seguir navegando.
+    side.querySelectorAll('.languages a').forEach(a=>{
+      a.addEventListener('click',()=>{
+        if(window.matchMedia('(max-width: 820px)').matches && side.classList.contains('open')){
+          try{sessionStorage.setItem('caracoles-language-menu-open','1');}catch(e){}
+        }
+      });
+    });
+    side.querySelectorAll('a').forEach(a=>{if(!a.closest('.languages'))a.addEventListener('click',closeMenu);});
+
+    let reopenAfterLanguageChange=false;
+    try{
+      reopenAfterLanguageChange=sessionStorage.getItem('caracoles-language-menu-open')==='1';
+      sessionStorage.removeItem('caracoles-language-menu-open');
+    }catch(e){}
+    if(reopenAfterLanguageChange && window.matchMedia('(max-width: 820px)').matches){
+      openMenu();
+    }
+
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&side.classList.contains('open'))closeMenu();});
   }
   document.querySelectorAll('[data-wine-slider]').forEach(slider=>{
