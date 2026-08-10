@@ -2,8 +2,23 @@
   const btn=document.querySelector('.mobile-menu-btn');
   const side=document.querySelector('.sidebar');
   if(btn&&side){
-    btn.addEventListener('click',()=>{side.classList.toggle('open');btn.setAttribute('aria-expanded',side.classList.contains('open'))});
-    side.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>side.classList.remove('open')));
+    const closeMenu=()=>{
+      side.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label',document.documentElement.lang==='en'?'Open menu':'Abrir menú');
+      btn.textContent='☰';
+      document.body.classList.remove('mobile-menu-open');
+    };
+    const openMenu=()=>{
+      side.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+      btn.setAttribute('aria-label',document.documentElement.lang==='en'?'Close menu':'Cerrar menú');
+      btn.textContent='×';
+      document.body.classList.add('mobile-menu-open');
+    };
+    btn.addEventListener('click',()=>side.classList.contains('open')?closeMenu():openMenu());
+    side.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&side.classList.contains('open'))closeMenu();});
   }
   document.querySelectorAll('[data-wine-slider]').forEach(slider=>{
     const slides=[...slider.querySelectorAll('.wine-slide')];
