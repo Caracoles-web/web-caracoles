@@ -1,0 +1,1090 @@
+@import url("https://fonts.googleapis.com/css2?family=Paytone+One&display=swap");
+:root{
+  --sidebar: 340px;
+  --ink:#050505;
+  --paper:#fff;
+  --warm:#efd0bb;
+  --accent:#be1418;
+  --muted:#777;
+  --line:#d8d8d8;
+  --paper-soft:#f7f7f5;
+  --wine:#8a0021;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:#fff;font-weight:700;line-height:1.65}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:#fff;z-index:50;border-right:1px solid #eee;display:flex;flex-direction:column;align-items:center;padding:22px 30px 20px;overflow:auto}
+.logo{width:280px;max-width:100%;margin:0 auto 58px}
+.side-nav{width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
+.side-nav a{position:relative;display:block;width:100%;padding:13px 8px;font-size:17px}
+.side-nav a:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:0;width:18px;height:1px;background:#d4d4d4;transform:translateX(-50%)}
+.side-nav a.active{font-weight:900}
+.side-nav a.active::before,.side-nav a.active::after{background:#111;height:2px;width:90px}
+.side-nav a.active::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%)}
+.side-nav a:hover{transform:translateY(-1px)}
+.sidebar-bottom{margin-top:auto;width:100%;padding-top:26px;text-align:center}
+.languages{display:flex;justify-content:center;gap:8px;align-items:center;font-size:15px;margin-bottom:18px}
+.languages a{padding:3px 5px}
+.languages .active{font-weight:900;border-bottom:2px solid #111}
+.socials{display:flex;align-items:center;justify-content:center;gap:22px}
+.socials img{width:29px;height:29px;object-fit:contain;transition:transform .2s ease}
+.socials a:first-child img{width:34px}
+.socials a:hover img{transform:scale(1.12)}
+.mobile-head{display:none}
+.page{margin-left:var(--sidebar);min-height:100vh;overflow:hidden}
+.slider{position:relative;height:min(72vh,760px);min-height:540px;background:#111;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.35) 100%)}
+.slider-caption{position:absolute;z-index:3;right:10%;bottom:13%;background:rgba(120,64,37,.45);padding:12px 30px;text-align:center;color:#fff;text-transform:uppercase;font-size:24px;line-height:1.35;text-shadow:0 2px 5px #000}
+.slider-dots{position:absolute;z-index:4;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:8px}
+.slider-dots button{width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:transparent;padding:0;cursor:pointer}
+.slider-dots button.active{background:#fff}
+.action-bar{background:#050505;color:#fff;display:flex;justify-content:center;align-items:center;gap:70px;padding:18px 24px}
+.action-bar .divider{height:50px;width:1px;background:#777}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:2px solid currentColor;border-radius:999px;padding:10px 32px;min-width:170px;font-weight:900;transition:.2s ease;background:#050505;color:#fff}
+.btn:hover{background:#fff;color:#050505}
+.btn.red{color:#ff2933}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:980px;margin:0 auto;padding:72px 8vw}
+.contact-grid h2{font-size:24px;margin:0 0 12px}
+.contact-grid p{font-size:18px}
+.contact-grid a.phone{font-size:23px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.map-wrap{height:470px;background:#eee}
+.map-wrap iframe{width:100%;height:100%;border:0}
+.footer{background:#050505;color:#fff;padding:58px 7vw 36px}
+.footer hr{border:0;border-top:1px solid #777;max-width:960px;margin:0 auto 35px}
+.footer-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.4fr .7fr .7fr;gap:35px;align-items:start}
+.footer h3{margin:0 0 12px;font-size:17px}.footer p{margin:2px 0;font-size:15px}.footer a{text-decoration:underline;text-underline-offset:3px}.service-icons{display:flex;gap:10px;align-items:center}.service-icons img{height:42px;width:auto}
+.legal-page{max-width:950px;margin:0 auto;padding:80px 7vw}.legal-page h1{font-size:40px}.legal-page h2{margin-top:34px}
+.mobile-menu-btn{display:none}
+@media (max-width:1100px){:root{--sidebar:285px}.logo{width:235px;margin-bottom:35px}.side-nav a{font-size:15px;padding:11px 6px}.slider-caption{font-size:20px}}
+@media (max-width:820px){
+  body{font-weight:700}.sidebar{transform:translateX(-100%);transition:transform .28s ease;width:min(84vw,330px);box-shadow:8px 0 25px rgba(0,0,0,.18)}.sidebar.open{transform:translateX(0)}
+  .page{margin-left:0;padding-top:74px}.mobile-head{display:flex;position:fixed;z-index:60;left:0;right:0;top:0;height:74px;background:#fff;border-bottom:1px solid #eee;align-items:center;justify-content:space-between;padding:8px 16px}.mobile-head img{height:55px;width:auto}.mobile-menu-btn{display:inline-flex;border:0;background:#111;color:#fff;width:45px;height:45px;border-radius:50%;align-items:center;justify-content:center;font-size:24px;cursor:pointer}
+  .slider{height:66vh;min-height:450px}.slider-caption{left:7%;right:7%;bottom:12%;font-size:19px;padding:12px 15px}.action-bar{gap:18px;flex-direction:column}.action-bar .divider{display:none}.btn{min-width:220px}
+  .contact-grid{grid-template-columns:1fr;gap:30px;padding:55px 24px}.map-wrap{height:420px}.footer-grid{grid-template-columns:1fr;text-align:center}.service-icons{justify-content:center}
+}
+@media (max-width:520px){.slider{min-height:430px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* ===== ASADOR CARACOLES · HOME / MENÚ / PIE · 2026-08 ===== */
+.sidebar{background:var(--paper-soft);border-right:0;box-shadow:7px 0 24px rgba(0,0,0,.10)}
+.logo-link{display:block;width:100%}.logo{margin-bottom:0}.side-nav{margin-top:auto}.sidebar-bottom{margin-top:26px;padding-top:0}.socials{gap:16px}.socials img,.socials a:first-child img{width:31px;height:31px;object-fit:contain}.socials a:nth-child(2) img{width:29px;height:29px}.socials a:nth-child(3) img{width:29px;height:29px}.mobile-head{background:var(--paper-soft);box-shadow:0 5px 18px rgba(0,0,0,.08)}
+.home-page{background:#fff}.home-slider{height:min(67vh,720px);min-height:500px}.home-slider .slide{background-position:center}.home-slider .slider-caption{font-size:20px;letter-spacing:.02em;background:rgba(0,0,0,.18);border-left:1px solid rgba(255,255,255,.6);padding:11px 22px}.home-actions{padding:14px 24px;gap:75px}.home-actions .btn{font-size:14px;padding:8px 27px;min-width:155px}.home-actions .wine-outline{color:#ff2431;border-color:#ff2431}
+.home-discover{background:var(--paper-soft);padding:58px 7vw}.home-discover-inner{max-width:930px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}.home-discover .copy{text-align:center}.home-discover .kicker{font-size:18px;margin:0 0 5px}.home-discover h1{font-size:32px;line-height:1.1;margin:0 0 18px}.home-discover p{font-size:16px;margin:.45em auto;max-width:520px}.home-discover .media{display:flex;justify-content:center}.home-discover .media img{width:min(100%,360px);aspect-ratio:1/1;object-fit:cover}
+.season-intro{background:#fff;text-align:center;padding:38px 7vw 28px}.season-intro h2{font-size:22px;margin:0 0 8px}.season-intro p{margin:0 auto;max-width:900px;font-size:15px;line-height:1.5}.season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--paper-soft)}.season-card{margin:0;background:var(--paper-soft);text-align:center}.season-photo{background:#000;border:4px solid #000;aspect-ratio:1.12/1;overflow:hidden}.season-photo img{width:100%;height:100%;object-fit:cover}.season-card figcaption{min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:9px 10px 14px;background:var(--paper-soft);font-size:14px;line-height:1.25}.season-card figcaption strong{font-size:14px}.season-card figcaption span{font-size:12px;margin-top:2px}.snails-strip{background:var(--paper-soft);display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 20px 24px;font-size:15px}.snails-strip img{width:46px;height:30px;object-fit:contain}
+.wine-section{background:#050505;color:#fff;padding:38px 7vw 60px}.wine-heading-row{max-width:970px;margin:0 auto 28px;display:grid;grid-template-columns:.9fr 1.6fr;gap:32px;align-items:start}.wine-heading-row h2{font-size:17px;line-height:1.2;margin:4px 0 0;padding:8px 10px;background:#159fbd;color:#fff;text-align:center}.wine-heading-row p{margin:0;border-left:1px solid #777;padding-left:22px;font-size:14px;line-height:1.55}.wine-panels{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}.wine-panel{position:relative;min-height:360px;overflow:hidden}.wine-photo{background:#191919}.wine-photo img{width:100%;height:100%;object-fit:cover}.wine-info{background:var(--wine);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}.wine-info>img{position:absolute;inset:7% 6%;width:88%;height:86%;object-fit:contain;opacity:.46;filter:brightness(.2)}.wine-panel-copy{position:relative;z-index:1;text-align:center;width:86%;text-shadow:0 1px 2px rgba(0,0,0,.25)}.wine-panel-copy h3{font-size:24px;line-height:1.15;margin:0 0 24px}.wine-panel-copy p{font-size:13px;line-height:1.35;margin:0 0 22px}.mini-btn{display:inline-flex;border:1px solid #fff;border-radius:999px;padding:7px 22px;font-size:12px}
+.compact-footer{padding:30px 7vw 24px;border-top:1px solid #646464}.compact-footer .footer-grid{max-width:800px;grid-template-columns:1.5fr .8fr .8fr;gap:28px;align-items:center}.compact-footer h3{font-size:15px;margin-bottom:7px}.compact-footer p{font-size:13px}.compact-footer .footer-legal{margin-top:12px}.footer-services{text-align:center;font-size:13px}.compact-footer .service-icons{justify-content:center;margin-top:8px;gap:9px}.compact-footer .service-icons img{height:34px;max-width:70px;object-fit:contain}.compact-footer .service-icons img:last-child{height:30px;max-width:55px}.footer-hours{text-align:center}.compact-footer .footer-hours .btn{min-width:120px;padding:7px 18px;font-size:12px}.footer-award{display:block;width:86px;height:86px;object-fit:contain;margin:24px auto 0}
+@media (max-width:1100px){.home-discover{padding-left:5vw;padding-right:5vw}.wine-section{padding-left:5vw;padding-right:5vw}.season-card figcaption{min-height:92px}}
+@media (max-width:820px){.side-nav{margin-top:18px}.sidebar-bottom{margin-top:auto;padding-top:22px}.home-slider{height:58vh;min-height:430px}.home-actions{gap:14px;padding:18px 20px}.home-discover{padding:48px 24px}.home-discover-inner{grid-template-columns:1fr;gap:28px}.home-discover h1{font-size:29px}.season-intro{padding:34px 24px 24px}.season-grid{grid-template-columns:1fr 1fr}.wine-heading-row{grid-template-columns:1fr;gap:14px}.wine-heading-row p{border-left:0;border-top:1px solid #555;padding:16px 0 0;text-align:center}.wine-panels{grid-template-columns:1fr;max-width:520px}.wine-panel{min-height:330px}.compact-footer .footer-grid{grid-template-columns:1fr;text-align:center}}
+@media (max-width:520px){.home-slider{min-height:390px}.home-slider .slider-caption{font-size:15px;left:6%;right:6%}.season-grid{grid-template-columns:1fr}.season-photo{aspect-ratio:1.25/1}.season-card figcaption{min-height:72px}.snails-strip{padding-bottom:20px}.wine-section{padding:34px 18px 46px}.wine-panel-copy h3{font-size:21px}}
+
+
+/* ===== CORRECCIONES VISUALES · HOME 04 ===== */
+@media (min-width:821px){
+  .sidebar .side-nav{margin-top:30px}
+  .sidebar .sidebar-bottom{margin-top:24px;padding-top:0}
+}
+
+/* Slider limpio: sin indicadores de progreso */
+.home-slider .slider-dots{display:none!important}
+
+/* Esencias: marco negro continuo y proporcional */
+.season-grid{
+  border-top:7px solid #000;
+  border-left:7px solid #000;
+  border-right:7px solid #000;
+}
+.season-photo{
+  border:0;
+  border-right:7px solid #000;
+  border-bottom:7px solid #000;
+}
+.season-card:last-child .season-photo{border-right:0}
+.snails-strip{gap:16px;padding:17px 20px 29px;font-size:16px}
+.snails-strip img{width:72px;height:50px;object-fit:contain}
+
+/* Vinos: composición de la referencia original */
+.wine-section{padding-top:34px}
+.wine-heading-row{max-width:1020px;grid-template-columns:.95fr 1.75fr;gap:0;margin-bottom:30px;align-items:stretch}
+.wine-heading-row h2{
+  margin:0;
+  padding:14px 28px 14px 0;
+  background:transparent;
+  color:#fff;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+  text-align:right;
+  font-size:17px;
+  line-height:1.25;
+}
+.wine-heading-row p{
+  margin:0;
+  border-left:1px solid rgba(255,255,255,.82);
+  padding:8px 0 8px 28px;
+  color:#fff;
+  font-size:14px;
+  line-height:1.55;
+}
+.wine-panels{max-width:960px;grid-template-columns:1fr 1fr;gap:20px}
+.wine-panel{min-height:490px}
+.wine-photo img{object-fit:cover}
+.wine-info>img{inset:2% 1%;width:98%;height:96%;opacity:.55;filter:brightness(.18)}
+.wine-panel-copy{width:88%}
+.wine-panel-copy h3{font-size:27px;line-height:1.18;margin:0 0 24px}
+.wine-panel-copy h3::after{content:"";display:block;width:76%;height:2px;background:#fff;margin:24px auto 0}
+.wine-panel-copy p{font-size:14px;line-height:1.4;margin:0 0 28px}
+.mini-btn{background:rgba(0,0,0,.55);border-color:#fff;color:#fff;padding:8px 30px;font-size:13px}
+
+@media (max-width:820px){
+  .season-grid{border-width:6px}
+  .season-photo{border-right:6px solid #000;border-bottom:6px solid #000}
+  .season-card:nth-child(2n) .season-photo{border-right:0}
+  .snails-strip img{width:64px;height:44px}
+  .wine-heading-row{grid-template-columns:1fr;gap:0}
+  .wine-heading-row h2{justify-content:center;text-align:center;padding:10px 0 16px}
+  .wine-heading-row p{border-left:0;border-top:1px solid rgba(255,255,255,.82);padding:16px 0 0;text-align:center}
+  .wine-panels{grid-template-columns:1fr;max-width:520px;gap:16px}
+  .wine-panel{min-height:390px}
+}
+@media (max-width:520px){
+  .season-grid{border-width:5px}
+  .season-photo{border-right:0;border-bottom:5px solid #000}
+  .snails-strip{gap:10px;font-size:15px}
+  .snails-strip img{width:58px;height:40px}
+  .wine-panel{min-height:350px}
+  .wine-panel-copy h3{font-size:22px}
+}
+
+/* ===== ÚLTIMAS CORRECCIONES VISUALES · HOME / NAVEGACIÓN / PIE · 2026-08 ===== */
+
+/* Portada: recuadro más claro y sin raya vertical izquierda */
+.home-slider .slider-caption{
+  background:rgba(255,255,255,.25);
+  border-left:0;
+}
+
+/* Navegación desktop: dos líneas de hover; el activo permanece marcado hasta el clic */
+.side-nav a{
+  transition:none;
+}
+.side-nav a::before,
+.side-nav a::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  background:#d4d4d4;
+  transition:width .28s ease,background-color .28s ease,height .28s ease;
+}
+.side-nav a::before{
+  top:0;
+  width:0;
+  height:1px;
+}
+.side-nav a::after{
+  bottom:0;
+  width:18px;
+  height:1px;
+}
+.side-nav a:hover{transform:none}
+.side-nav a:hover::before,
+.side-nav a:hover::after{
+  width:72px;
+  height:2px;
+  background:#111;
+}
+.side-nav a.active::before,
+.side-nav a.active::after{
+  width:90px;
+  height:2px;
+  background:#111;
+}
+
+/* Esencias: el negro enmarca únicamente las fotografías y termina al empezar los textos */
+.season-grid{
+  border:0;
+}
+.season-photo{
+  border:0;
+  border-top:7px solid #000;
+  border-right:7px solid #000;
+  border-bottom:7px solid #000;
+}
+.season-card:first-child .season-photo{
+  border-left:7px solid #000;
+}
+.season-card:last-child .season-photo{
+  border-right:7px solid #000;
+}
+.season-photo img{
+  transition:transform .45s ease;
+  transform:scale(1);
+}
+.season-photo:hover img{
+  transform:scale(1.035);
+}
+
+/* Pie: la columna Servicios queda exactamente centrada sobre el GIF */
+.compact-footer .footer-grid{
+  grid-template-columns:1fr 1fr 1fr;
+}
+.footer-services{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.footer-award{
+  margin-top:20px;
+}
+
+@media (max-width:820px){
+  .season-grid{border:0}
+  .season-photo{
+    border-top:6px solid #000;
+    border-right:6px solid #000;
+    border-bottom:6px solid #000;
+    border-left:0;
+  }
+  .season-card:nth-child(odd) .season-photo{border-left:6px solid #000}
+  .season-card:nth-child(even) .season-photo{border-right:6px solid #000}
+  .compact-footer .footer-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:520px){
+  .season-photo{
+    border:5px solid #000;
+  }
+}
+
+/* ===== AJUSTES FINALES · PAYTONE ONE / IDIOMAS / VINOS · 2026-08 ===== */
+body{
+  font-family:"Paytone One","Trebuchet MS",Arial,sans-serif;
+  font-weight:400;
+}
+
+.languages{
+  font-family:"Paytone One","Trebuchet MS",Arial,sans-serif;
+  font-size:20px;
+  letter-spacing:.02em;
+  gap:10px;
+  margin-bottom:18px;
+}
+.languages a{
+  position:relative;
+  display:inline-block;
+  padding:2px 4px 7px;
+  transition:transform .18s ease,text-shadow .18s ease;
+}
+.languages a:hover{
+  transform:translateY(-1px) scale(1.06);
+  text-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+.languages a.active{
+  border-bottom:0;
+}
+.languages a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:3px;
+  border-radius:999px;
+  background:var(--wine);
+}
+.languages span{
+  font-size:16px;
+  opacity:.9;
+  transform:translateY(-1px);
+}
+
+.wine-heading-row h2{
+  font-size:18px;
+}
+.wine-heading-row p{
+  font-size:15px;
+}
+.wine-panels{
+  max-width:995px;
+  gap:22px;
+}
+.wine-panel{
+  min-height:500px;
+}
+.wine-photo img{
+  object-fit:cover;
+  object-position:center center;
+}
+.wine-info{
+  padding:22px;
+}
+.wine-info>img{
+  inset:2% 1%;
+  width:98%;
+  height:96%;
+  opacity:.58;
+  filter:brightness(.18);
+}
+.wine-panel-copy{
+  width:84%;
+}
+.wine-panel-copy h3{
+  font-size:31px;
+  line-height:1.22;
+  margin:0 0 26px;
+}
+.wine-panel-copy h3::after{
+  width:78%;
+  margin:24px auto 0;
+}
+.wine-panel-copy p{
+  font-size:15px;
+  line-height:1.45;
+  margin:0 0 30px;
+}
+.mini-btn{
+  padding:10px 34px;
+  font-size:13px;
+  background:rgba(0,0,0,.42);
+  box-shadow:0 8px 18px rgba(0,0,0,.18) inset;
+}
+
+@media (max-width:820px){
+  .languages{font-size:18px;}
+  .wine-panels{gap:16px;max-width:520px;}
+  .wine-panel{min-height:400px;}
+  .wine-panel-copy{width:86%;}
+  .wine-panel-copy h3{font-size:24px;}
+  .wine-panel-copy p{font-size:14px;}
+}
+
+@media (max-width:520px){
+  .languages{font-size:17px;}
+  .wine-panel{min-height:360px;}
+  .wine-panel-copy h3{font-size:22px;}
+}
+
+/* ===== AJUSTES 07 · HOVER MENÚ / PIES FOTOS / CARACOLES / SLIDER BODEGA ===== */
+/* El hover ya no dibuja líneas nuevas: sólo un pequeño pop. */
+.side-nav a{
+  transition:transform .18s ease;
+}
+.side-nav a:hover{
+  transform:scale(1.045);
+}
+.side-nav a:not(.active):hover::before{
+  width:0;
+  height:1px;
+  background:#d4d4d4;
+}
+.side-nav a:not(.active):hover::after{
+  width:18px;
+  height:1px;
+  background:#d4d4d4;
+}
+.side-nav a.active:hover::before,
+.side-nav a.active:hover::after{
+  width:90px;
+  height:2px;
+  background:#111;
+}
+
+/* Pies de las cuatro fotos: más cuerpo, aire y lectura, como en la referencia. */
+.season-card figcaption{
+  min-height:104px;
+  padding:14px 12px 18px;
+  justify-content:flex-start;
+  line-height:1.28;
+}
+.season-card figcaption strong{
+  font-size:18px;
+  line-height:1.25;
+  font-weight:400;
+}
+.season-card figcaption span{
+  font-size:15px;
+  line-height:1.28;
+  margin-top:7px;
+  font-weight:400;
+}
+
+/* Caracoles: dos líneas y bloque de texto de altura visual similar al SVG. */
+.snails-strip{
+  gap:14px;
+  padding-top:18px;
+  padding-bottom:28px;
+}
+.snails-strip img{
+  width:auto;
+  height:50px;
+}
+.snails-strip strong{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  font-size:18px;
+  line-height:1.12;
+  min-height:50px;
+  font-weight:400;
+}
+
+/* Panel izquierdo de vinos: slider de dos fotografías, sin controles visibles. */
+.wine-photo-slider{
+  position:relative;
+  background:#050505;
+}
+.wine-photo-slider .wine-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.wine-photo-slider .wine-slide.active{
+  opacity:1;
+}
+
+@media (max-width:820px){
+  .season-card figcaption{min-height:96px;padding:12px 10px 16px}
+  .season-card figcaption strong{font-size:16px}
+  .season-card figcaption span{font-size:14px;margin-top:5px}
+  .snails-strip img{height:46px}
+  .snails-strip strong{font-size:17px;min-height:46px}
+}
+@media (max-width:520px){
+  .season-card figcaption{min-height:84px}
+  .season-card figcaption strong{font-size:16px}
+  .season-card figcaption span{font-size:13px}
+  .snails-strip img{height:43px}
+  .snails-strip strong{font-size:16px;min-height:43px}
+}
+
+/* ===== AJUSTES 08 · LEGIBILIDAD CTAs / HORARIO / CARTA DE VINOS ===== */
+/* Paytone One ya tiene mucho cuerpo: en estos CTAs evitamos añadir una negrita artificial. */
+.home-actions .btn{
+  font-weight:400;
+  font-size:16px;
+  line-height:1.15;
+  letter-spacing:0;
+  text-shadow:none;
+}
+.home-actions .wine-outline{
+  font-weight:400;
+}
+
+/* Horario del pie: más legible, sin subrayado heredado de los enlaces del footer. */
+.compact-footer .footer-hours .btn{
+  font-weight:400;
+  font-size:14px;
+  line-height:1.15;
+  text-decoration:none;
+  text-underline-offset:0;
+}
+.compact-footer .footer-hours .btn:hover{
+  text-decoration:none;
+}
+
+/* CTA de vinos: etiqueta explícita en lugar de “Leer más”. */
+.wine-info .mini-btn{
+  font-weight:400;
+  text-decoration:none;
+}
+
+@media (max-width:820px){
+  .home-actions .btn{font-size:15px;}
+  .compact-footer .footer-hours .btn{font-size:14px;}
+}
+
+
+/* ===== PÁGINA EVENTOS · 09 ===== */
+.eventos-page{background:#fff}
+.eventos-hero{
+  min-height:100vh;
+  background-image:url('../images/eventos-portada-vino-copa.webp');
+  background-size:cover;
+  background-position:center center;
+  background-attachment:scroll;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  position:relative;
+  isolation:isolate;
+}
+.eventos-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.08);
+  z-index:-1;
+}
+.eventos-hero-copy{
+  width:min(90%,760px);
+  text-align:center;
+  text-shadow:0 2px 8px rgba(0,0,0,.72);
+  transform:translateY(2%);
+}
+.eventos-hero-copy .eyebrow{
+  margin:0 0 10px;
+  font-size:24px;
+  line-height:1.2;
+}
+.eventos-hero-copy h1{
+  margin:0;
+  font-size:42px;
+  line-height:1.28;
+  font-weight:400;
+  text-transform:uppercase;
+}
+.eventos-intro{
+  background:#fff;
+  padding:20px 7vw 42px;
+}
+.eventos-intro-inner{
+  max-width:860px;
+  margin:0 auto;
+  font-size:16px;
+  line-height:1.9;
+}
+.eventos-intro-inner h2{
+  margin:0 0 4px;
+  font-size:17px;
+  line-height:1.4;
+  text-align:left;
+  text-transform:uppercase;
+  font-weight:400;
+}
+.eventos-intro-inner p{margin:0}
+.eventos-mosaic{
+  background:#f7f7f5;
+  padding:0 7vw 70px;
+}
+.eventos-mosaic-inner{
+  width:min(100%,900px);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-auto-rows:minmax(430px,auto);
+}
+.eventos-cell{
+  min-width:0;
+  min-height:430px;
+  background:#f7f7f5;
+}
+.eventos-copy-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px 34px;
+}
+.eventos-copy-cell h2{
+  margin:0 0 17px;
+  font-size:27px;
+  line-height:1.16;
+  font-weight:400;
+  text-transform:uppercase;
+}
+.eventos-copy-cell p{
+  margin:0;
+  font-size:14px;
+  line-height:1.55;
+}
+.eventos-copy-cell .eventos-lines{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  font-size:14px;
+  line-height:1.28;
+}
+.eventos-copy-cell .eventos-lines span{display:block}
+.eventos-copy-cell .btn{
+  min-width:124px;
+  padding:7px 22px;
+  margin-top:20px;
+  font-size:13px;
+  line-height:1.1;
+  font-weight:400;
+  text-decoration:none;
+}
+.eventos-copy-cell .eventos-contact-copy{
+  max-width:360px;
+  font-size:14px;
+  line-height:1.7;
+}
+.eventos-copy-cell .eventos-about-copy{
+  max-width:360px;
+  font-size:13.5px;
+  line-height:1.65;
+}
+.eventos-media-cell{
+  position:relative;
+  overflow:hidden;
+  background:#111;
+}
+.eventos-media-cell img,
+.eventos-media-cell .eventos-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.eventos-media-cell .eventos-slide{
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.eventos-media-cell .eventos-slide.active{opacity:1}
+.eventos-catas-slider .eventos-slide{object-position:left bottom}
+.eventos-especiales-slider .eventos-slide{object-position:center center}
+.eventos-asador-slider .eventos-slide{object-position:center top}
+.eventos-asador-slider .eventos-slide:nth-child(2){object-position:center center}
+
+@media (max-width:1100px){
+  .eventos-hero-copy h1{font-size:36px}
+  .eventos-hero-copy .eyebrow{font-size:21px}
+  .eventos-mosaic-inner{width:min(100%,840px);grid-auto-rows:minmax(400px,auto)}
+  .eventos-cell{min-height:400px}
+  .eventos-copy-cell{padding:26px 26px}
+  .eventos-copy-cell h2{font-size:24px}
+  .eventos-copy-cell .eventos-lines,.eventos-copy-cell .eventos-contact-copy{font-size:13px}
+  .eventos-copy-cell .eventos-about-copy{font-size:12.8px}
+}
+@media (max-width:820px){
+  .eventos-hero{min-height:calc(100svh - 74px);background-position:center center}
+  .eventos-hero-copy{transform:none;width:88%}
+  .eventos-hero-copy .eyebrow{font-size:18px}
+  .eventos-hero-copy h1{font-size:31px;line-height:1.24}
+  .eventos-intro{padding:38px 24px 46px}
+  .eventos-intro-inner{font-size:14px;line-height:1.75}
+  .eventos-intro-inner h2{font-size:16px}
+  .eventos-mosaic{padding:0 24px 52px}
+  .eventos-mosaic-inner{grid-template-columns:1fr;grid-auto-rows:auto;max-width:560px}
+  .eventos-cell{min-height:0}
+  .eventos-copy-cell{min-height:360px;padding:34px 28px}
+  .eventos-media-cell{aspect-ratio:1/1;min-height:0}
+  .eventos-copy-cell h2{font-size:24px}
+  .eventos-mosaic-inner .eventos-catas-slider{grid-row:2}
+  .eventos-mosaic-inner .eventos-events-copy{grid-row:3}
+  .eventos-mosaic-inner .eventos-especiales-slider{grid-row:4}
+  .eventos-mosaic-inner .eventos-about-copy-cell{grid-row:5}
+  .eventos-mosaic-inner .eventos-asador-slider{grid-row:6}
+}
+@media (max-width:520px){
+  .eventos-hero-copy .eyebrow{font-size:16px}
+  .eventos-hero-copy h1{font-size:27px}
+  .eventos-intro{padding:32px 20px 38px}
+  .eventos-intro-inner{font-size:13px}
+  .eventos-mosaic{padding:0 0 40px}
+  .eventos-copy-cell{min-height:335px;padding:28px 22px}
+  .eventos-copy-cell h2{font-size:21px}
+  .eventos-copy-cell .eventos-lines{font-size:12.5px}
+  .eventos-copy-cell .eventos-contact-copy{font-size:12.5px}
+  .eventos-copy-cell .eventos-about-copy{font-size:12px}
+}
+
+
+/* ===== NUEVA ESTRUCTURA · 10 · 2026-08 ===== */
+/* Fondo intermedio unificado */
+:root{--paper-soft:#f7f7f5}
+
+/* Eventos: texto depurado, sin botones en los recuadros. */
+.eventos-hero-copy .eyebrow{display:none}
+.eventos-summary-copy{max-width:370px;margin:0 0 14px!important;font-size:14px!important;line-height:1.65!important}
+.eventos-summary-copy:last-child{margin-bottom:0!important}
+.eventos-copy-cell .eventos-about-copy{margin:0 0 12px;max-width:390px;font-size:13.5px;line-height:1.65}
+.eventos-copy-cell .eventos-about-copy:last-child{margin-bottom:0}
+.eventos-copy-cell>.btn{display:none!important}
+
+/* Carta & Vinos: nueva página con portada y dos bloques gemelos. */
+.carta-page{background:#050505}
+.carta-hero{
+  min-height:76vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+}
+.carta-hero-copy{
+  width:min(90%,760px);
+  text-align:center;
+  text-shadow:0 2px 8px rgba(0,0,0,.72);
+}
+.carta-hero-copy h1{margin:0;font-size:48px;line-height:1.15;font-weight:400;text-transform:uppercase}
+.carta-section{padding-bottom:48px}
+.carta-section+.wine-section{padding-top:48px;border-top:1px solid rgba(255,255,255,.16)}
+.carta-info{background:var(--wine)}
+.carta-info::before{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:150px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:url('../images/caracolicon-SVG-03-01.svg') center/contain no-repeat;
+  opacity:.08;
+  filter:brightness(.1);
+}
+.carta-placeholder{pointer-events:none}
+
+/* Video destacado común: miniatura local, YouTube sólo se carga tras el clic. */
+.footer-video{
+  width:min(340px,100%);
+  margin:0 auto 30px;
+  text-align:center;
+}
+.video-poster,
+.youtube-frame-wrap{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  padding:0;
+  border:0;
+  overflow:hidden;
+  background:#111;
+  border-radius:2px;
+}
+.video-poster{cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.26)}
+.video-poster>img{display:block;width:100%;height:100%;object-fit:cover}
+.video-poster::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.04);transition:background .2s ease}
+.video-poster:hover::after{background:rgba(0,0,0,.14)}
+.video-play{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  padding-left:4px;
+  border:2px solid rgba(255,255,255,.92);
+  border-radius:50%;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  font:400 24px/1 Arial,sans-serif;
+  transition:transform .18s ease,background .18s ease;
+}
+.video-poster:hover .video-play{transform:translate(-50%,-50%) scale(1.06);background:rgba(0,0,0,.76)}
+.youtube-frame-wrap iframe{display:block;width:100%;height:100%;border:0}
+
+@media (max-width:820px){
+  .carta-hero{min-height:calc(74svh - 74px)}
+  .carta-hero-copy h1{font-size:36px}
+  .eventos-summary-copy{font-size:13px!important}
+  .footer-video{width:min(320px,88vw);margin-bottom:26px}
+}
+@media (max-width:520px){
+  .carta-hero-copy h1{font-size:30px}
+  .eventos-summary-copy{font-size:12.5px!important}
+}
+
+
+/* Campos fotográficos todavía sin imagen asignada: nunca se rellenan con fotos aleatorias. */
+.carta-hero-empty{background:#000;position:relative;overflow:hidden}
+.carta-hero-empty::before{content:none!important}
+.carta-hero-empty::after{content:"";position:absolute;inset:0;background:transparent;z-index:-1}
+.carta-photo-empty{background:#000!important}
+
+
+/* ===== CAMBIOS 13 · EVENTOS + CARTA & VINOS ===== */
+.hero-mark{display:block;width:min(78px,22vw);margin:0 auto 16px;opacity:.95}
+.carta-hero{min-height:100vh;position:relative;padding:36px 0}
+.carta-hero::after{background:rgba(0,0,0,.50)}
+.carta-hero-copy{max-width:900px;padding:20px 26px}
+.carta-hero-copy h1{font-size:56px;margin:0 0 10px}
+.carta-hero-copy .hero-subline{margin:0 0 14px;font-size:20px;line-height:1.35}
+.carta-hero-copy .hero-list{display:flex;flex-direction:column;gap:6px;margin:0 auto 22px;max-width:760px}
+.carta-hero-copy .hero-list p{margin:0;font-size:18px;line-height:1.3}
+.carta-hero-copy .btn{background:rgba(0,0,0,.58);min-width:126px;padding:8px 26px;font-size:14px}
+.carta-slider-panel,.wine-photo-slider{position:relative;background:#111}
+.carta-slider-panel .gallery-slide,.wine-photo-slider .gallery-slide,.eventos-media-cell .gallery-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.carta-slider-panel .gallery-slide.active,.wine-photo-slider .gallery-slide.active,.eventos-media-cell .gallery-slide.active{opacity:1}
+.carta-slider-panel .gallery-slide:nth-child(2){object-position:center center}
+.carta-slider-panel .gallery-slide:nth-child(4){object-position:center center}
+.carta-slider-panel .gallery-slide:nth-child(5){object-position:center center}
+.disclaimer-band{background:#fff;color:#050505;padding:24px 7vw;border-top:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8}
+.disclaimer-band-inner{max-width:1030px;margin:0 auto}
+.disclaimer-band strong{display:block;font-size:17px;line-height:1.2;margin-bottom:8px}
+.disclaimer-band p{margin:0;font-size:15px;line-height:1.45}
+.wine-selection-showcase{background:#050505;color:#fff;padding:0 7vw 64px}
+.wine-selection-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;align-items:stretch;background:#050505}
+.wine-selection-copy{background:var(--wine);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 42px;min-height:480px}
+.wine-selection-copy h2{margin:0 0 28px;font-size:42px;line-height:1.08;text-transform:uppercase}
+.wine-selection-copy h2::after{content:"";display:block;width:72%;height:2px;background:#fff;margin:20px auto 0}
+.wine-selection-copy ul{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:10px}
+.wine-selection-copy li{font-size:24px;line-height:1.15}
+.wine-selection-copy .mini-btn{font-size:16px;padding:10px 34px}
+.wine-selection-graphic{display:flex;align-items:center;justify-content:center;min-height:480px;padding:22px 10px 0;background:#000;overflow:hidden}
+.wine-selection-graphic img{width:100%;height:100%;max-width:640px;object-fit:contain}
+.eventos-mosaic--topless{padding-top:0}
+.eventos-mosaic--topless .eventos-mosaic-inner{margin-top:0}
+.eventos-media-cell .gallery-slide{object-fit:cover}
+.eventos-catas-slider .gallery-slide{object-position:center center}
+.eventos-especiales-slider .gallery-slide{object-position:center center}
+.eventos-asador-slider .gallery-slide{object-position:center center}
+.eventos-about-copy-cell p{max-width:390px}
+@media (max-width:1100px){
+  .carta-hero-copy h1{font-size:48px}
+  .carta-hero-copy .hero-subline{font-size:18px}
+  .carta-hero-copy .hero-list p{font-size:16px}
+  .wine-selection-copy h2{font-size:34px}
+  .wine-selection-copy li{font-size:20px}
+}
+@media (max-width:820px){
+  .carta-hero{min-height:calc(100svh - 74px)}
+  .carta-hero-copy h1{font-size:38px}
+  .carta-hero-copy .hero-subline{font-size:16px}
+  .carta-hero-copy .hero-list p{font-size:15px}
+  .disclaimer-band{padding:22px 24px}
+  .wine-selection-showcase{padding:0 24px 50px}
+  .wine-selection-grid{grid-template-columns:1fr}
+  .wine-selection-copy,.wine-selection-graphic{min-height:360px}
+  .wine-selection-copy{padding:42px 26px}
+  .wine-selection-copy h2{font-size:28px}
+  .wine-selection-copy li{font-size:18px}
+}
+@media (max-width:520px){
+  .hero-mark{width:min(64px,24vw);margin-bottom:14px}
+  .carta-hero-copy h1{font-size:31px}
+  .carta-hero-copy .hero-list{gap:5px}
+  .carta-hero-copy .hero-list p{font-size:14px}
+  .disclaimer-band strong{font-size:16px}
+  .disclaimer-band p{font-size:14px}
+  .wine-selection-copy,.wine-selection-graphic{min-height:320px}
+  .wine-selection-copy h2{font-size:24px}
+  .wine-selection-copy li{font-size:16px}
+  .wine-selection-copy .mini-btn{font-size:14px}
+}
+
+/* --- Carta & Vinos restructuring (Aug 2026) --- */
+.carta-page .wine-heading-row{max-width:1180px;margin:0 auto 20px;display:grid;grid-template-columns:.75fr 1.65fr;gap:0;align-items:start}
+.carta-page .wine-heading-row h2{margin:0;padding:0 18px 0 0;background:none;color:#fff;text-align:right;font-size:18px;line-height:1.2;text-transform:uppercase}
+.carta-page .wine-heading-row p{margin:0;padding:0 0 0 20px;border-left:1px solid rgba(255,255,255,.75);font-size:14px;line-height:1.55}
+.carta-page .wine-panels{max-width:1180px;gap:14px}
+.carta-page .wine-panel{min-height:430px}
+.carta-page .carta-slider-panel,.carta-page .wine-graphic-card{background:#000}
+.carta-page .wine-info{background:var(--wine)}
+.carta-page .wine-panel-copy h3{font-size:42px;line-height:1.06;margin:0 0 28px;text-transform:none}
+.carta-page .wine-panel-copy p{font-size:24px;line-height:1.28;margin:0 0 24px;font-weight:700}
+.carta-page .mini-btn{font-size:16px;padding:10px 34px}
+.carta-page .wine-section--menu{padding-top:38px;padding-bottom:44px}
+.carta-page .wine-section--wines{padding-top:40px;padding-bottom:58px}
+.carta-page .wine-panels--selection{grid-template-columns:1.18fr .82fr}
+.carta-page .wine-graphic-card{display:flex;align-items:center;justify-content:center;padding:20px 10px 0;overflow:hidden}
+.carta-page .wine-graphic-card img{width:100%;height:100%;max-width:660px;object-fit:contain}
+.carta-page .wine-selection-card{display:flex;align-items:center;justify-content:center;padding:40px 28px}
+.carta-page .wine-selection-card .wine-panel-copy{width:90%}
+.carta-page .wine-selection-copy-inner h3{text-transform:uppercase}
+.carta-page .wine-selection-copy-inner h3::after{content:"";display:block;width:82%;height:2px;background:#fff;margin:18px auto 0}
+.carta-page .wine-selection-list{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px}
+.carta-page .wine-selection-list li{font-size:20px;line-height:1.12;font-weight:700}
+.carta-page .disclaimer-band{padding:20px 7vw}
+.carta-page .disclaimer-band-inner{max-width:1180px}
+.carta-page .disclaimer-band strong{font-size:20px}
+.carta-page .disclaimer-band p{font-size:16px;font-weight:700}
+
+@media (max-width:1100px){
+  .carta-page .wine-panel{min-height:370px}
+  .carta-page .wine-panel-copy h3{font-size:34px}
+  .carta-page .wine-panel-copy p{font-size:20px}
+  .carta-page .wine-selection-list li{font-size:18px}
+}
+@media (max-width:860px){
+  .carta-page .wine-heading-row{grid-template-columns:1fr;gap:12px}
+  .carta-page .wine-heading-row h2{text-align:left;padding:0}
+  .carta-page .wine-heading-row p{padding:14px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.75)}
+  .carta-page .wine-panels,.carta-page .wine-panels--selection{grid-template-columns:1fr}
+  .carta-page .wine-panel{min-height:340px}
+  .carta-page .wine-graphic-card{min-height:300px;padding-top:12px}
+}
+@media (max-width:520px){
+  .carta-page .wine-panel-copy h3{font-size:28px}
+  .carta-page .wine-panel-copy p{font-size:16px}
+  .carta-page .wine-selection-list li{font-size:16px}
+  .carta-page .mini-btn{font-size:14px;padding:9px 24px}
+}
+
+
+/* ===== AJUSTES 18 · NAVEGACIÓN DESKTOP / RESERVAS / LEGAL ===== */
+
+/* Reservas: mantener el fondo cálido general de la web, #f7f7f5. */
+.contact-page{
+  background:var(--paper-soft);
+}
+
+/* Datos societarios: presentes pero deliberadamente discretos al final de Legal. */
+.legal-owner{
+  margin-top:52px;
+  padding-top:18px;
+  border-top:1px solid #d8d8d5;
+  color:#6d6d69;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:12px;
+  font-weight:400;
+  line-height:1.65;
+}
+.legal-owner p{margin:0}
+.legal-owner a{text-decoration:underline;text-underline-offset:2px}
+
+/* Opción 4: más aire vertical sin separar visualmente el menú del logo. */
+@media (min-width:1101px){
+  .sidebar{
+    padding-top:38px;
+    padding-bottom:28px;
+  }
+  .sidebar .side-nav{
+    margin-top:34px;
+  }
+  .side-nav a{
+    font-size:18px;
+    padding:15px 8px;
+  }
+  .side-nav a.active::before{
+    top:-2px;
+  }
+  .side-nav a.active::after{
+    bottom:-2px;
+  }
+  .sidebar .sidebar-bottom{
+    margin-top:36px;
+    padding-top:0;
+  }
+  .languages{
+    margin-bottom:26px;
+  }
+}
+
+/* ===== AJUSTES 19 · PARALLAX CSS VISIBLE Y ESTABLE =====
+   En desktop, la fotografía permanece anclada al viewport mientras título y contenido
+   siguen el scroll normal. En móvil se usa scroll normal por compatibilidad. */
+.parallax-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background-color:#111!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+}
+.parallax-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+.parallax-hero > *{
+  position:relative;
+  z-index:2;
+}
+.eventos-hero{
+  background-image:url('../images/eventos-portada-vino-copa.webp')!important;
+}
+.eventos-hero::after{
+  background:transparent!important;
+}
+.carta-hero{
+  background-image:url('../images/carta-portada-setas-trufa.webp')!important;
+}
+.carta-hero::after{
+  background:rgba(0,0,0,.50)!important;
+}
+@media (min-width:981px){
+  .carta-hero,.eventos-hero{min-height:100vh;}
+  .parallax-hero{background-attachment:fixed!important;}
+}
+@media (max-width:980px), (prefers-reduced-motion:reduce){
+  .parallax-hero{background-attachment:scroll!important;}
+}
+
+/* El sello Travellers' Choice conserva exactamente su aspecto; ahora es clicable. */
+.footer-award-link{
+  display:block;
+  width:max-content;
+  max-width:100%;
+  margin:20px auto 0;
+  line-height:0;
+}
+.footer-award-link .footer-award{
+  display:block;
+  margin:0;
+}
+
+/* ===== AJUSTES 20 · COMPORTAMIENTO HOMOGÉNEO DE BOTONES =====
+   Conserva el aspecto normal propio de cada bloque y unifica únicamente
+   la respuesta al hover/foco: inversión clara blanco/negro, sin desaparecer. */
+.btn,
+.mini-btn{
+  transition:
+    background-color .20s ease,
+    color .20s ease,
+    border-color .20s ease,
+    box-shadow .20s ease;
+}
+.btn{
+  text-decoration:none;
+  cursor:pointer;
+}
+
+/* Esta regla final tiene prioridad sobre los estilos contextuales de Carta,
+   Reservas y el footer, que antes anulaban el hover en algunos botones. */
+.btn:hover,
+.btn:focus-visible,
+.carta-hero-copy .btn:hover,
+.carta-hero-copy .btn:focus-visible,
+.compact-footer .footer-hours .btn:hover,
+.compact-footer .footer-hours .btn:focus-visible{
+  background:#fff;
+  color:#050505;
+  border-color:#050505;
+  text-decoration:none;
+  outline:none;
+}
+
+/* Carta y Carta de vinos siguen siendo placeholders hasta disponer de PDF.
+   Mantienen su aspecto normal, pero responden visualmente igual al cursor. */
+.mini-btn:hover{
+  background:#fff;
+  color:#050505;
+  border-color:#050505;
+}
+
+.btn:focus-visible{
+  box-shadow:0 0 0 3px rgba(138,0,33,.30);
+}
+
+/* ===== AJUSTES 21 · BOTONES CARTA ===== */
+/* El CTA de la portada de Carta hereda el text-shadow del bloque hero.
+   Lo anulamos para que el hover sea tan limpio como el botón Reservas de inicio. */
+.carta-hero-copy .btn,
+.carta-hero-copy .btn:hover,
+.carta-hero-copy .btn:focus-visible{
+  text-shadow:none!important;
+}
+
+/* El botón Carta del panel burdeos es todavía un placeholder sin enlace,
+   pero debe reaccionar visualmente al hover. */
+.carta-placeholder{
+  pointer-events:auto;
+  cursor:default;
+}
+.carta-placeholder:hover{
+  background:#fff;
+  color:#050505;
+  border-color:#050505;
+  text-shadow:none;
+}
