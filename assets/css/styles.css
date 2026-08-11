@@ -1548,11 +1548,9 @@ body{
   }
 }
 
-/* ===== HOME · MOBILE · OCULTAR INTRO ESENCIAS DE TEMPORADA · 2026-08-11 =====
-   En móvil se omite únicamente el bloque de título + texto introductorio.
-   La cuadrícula de imágenes de temporada permanece y desktop no cambia. */
+/* ===== MOBILE · FRANJA "CARACOLES TODO EL AÑO" ===== */
 @media (max-width:820px){
-  .home-page .season-intro{
-    display:none;
+  .snails-strip{
+    background-color:#f7f7f5 !important;
   }
 }
