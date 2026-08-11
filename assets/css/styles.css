@@ -1532,3 +1532,18 @@ body{
     margin:0 auto 18px;
   }
 }
+
+/* iPad/tablets: las portadas 3:2 no deben ocupar 100vh dentro de la columna lateral.
+   Se respeta la proporción fotográfica para evitar el efecto de zoom/corte excesivo. */
+@media (min-width:821px) and (max-width:1366px) and (pointer:coarse){
+  .carta-hero,
+  .eventos-hero{
+    min-height:0!important;
+    aspect-ratio:3 / 2;
+  }
+  .parallax-hero{
+    background-size:cover!important;
+    background-position:center center!important;
+    background-attachment:scroll!important;
+  }
+}
