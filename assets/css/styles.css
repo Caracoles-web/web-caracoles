@@ -1441,14 +1441,9 @@ body{
     line-height:1.12;
   }
 
-  /* Texto introductorio sigue sobre negro debajo de la franja. */
+  /* En móvil se elimina el texto introductorio Arlanza / Ribera del Duero. */
   .carta-page .wine-section--wines .wine-heading-row p{
-    margin:0;
-    padding:24px clamp(18px,5vw,32px) 0;
-    border:0;
-    text-align:center;
-    font-size:clamp(15px,4.1vw,18px);
-    line-height:1.55;
+    display:none;
   }
 
   .carta-page .wine-panels--selection{
@@ -1463,8 +1458,7 @@ body{
   .carta-page .wine-graphic-card{
     min-height:0;
     overflow:visible;
-    /* Más aire entre la base de la copa y el botón Carta de vinos. */
-    padding:8px clamp(18px,5vw,32px) 38px;
+    padding:8px clamp(18px,5vw,32px) 0;
   }
 
   .carta-page .wine-graphic-card img{
@@ -1475,14 +1469,17 @@ body{
     object-fit:contain;
   }
 
-  /* El botón de vinos pasa a la intersección entre copa y selección. */
+  /* El botón queda centrado en flujo normal entre la base de la copa y
+     la línea superior de "Nuestra selección de vinos". */
   .carta-page .mobile-wine-menu-btn{
-    display:inline-flex;
-    position:absolute;
-    left:50%;
-    bottom:0;
+    display:flex;
+    position:relative;
+    left:auto;
+    bottom:auto;
     z-index:4;
-    transform:translate(-50%,50%);
+    width:max-content;
+    transform:none;
+    margin:28px auto 0;
     background:#050505;
     white-space:nowrap;
   }
@@ -1491,10 +1488,11 @@ body{
     display:none;
   }
 
-  /* Bloque de selección continuo, con espacio para el botón solapado. */
+  /* 28 px arriba: misma distancia que entre la copa y el botón.
+     La línea superior empieza tras este mismo intervalo. */
   .carta-page .wine-selection-card{
     min-height:0;
-    padding:58px clamp(22px,6vw,38px) 42px;
+    padding:28px clamp(22px,6vw,38px) 42px;
   }
 
   .carta-page .wine-selection-card .wine-panel-copy{
