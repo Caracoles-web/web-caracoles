@@ -53,6 +53,19 @@
     document.body.appendChild(callButton);
   }
 
+  // En la cortina móvil repetimos el acceso directo al teléfono, centrado
+  // entre la navegación principal y el selector ES/EN.
+  if(side && !side.querySelector('.menu-phone-btn')){
+    const menuCallButton=document.createElement('a');
+    menuCallButton.className='menu-phone-btn';
+    menuCallButton.href='tel:+34947170563';
+    menuCallButton.setAttribute('aria-label',document.documentElement.lang==='en'?'Call the restaurant':'Llamar al restaurante');
+    const floatingPhone=document.querySelector('.floating-phone-btn');
+    if(floatingPhone) menuCallButton.innerHTML=floatingPhone.innerHTML;
+    const sidebarBottom=side.querySelector('.sidebar-bottom');
+    if(sidebarBottom) side.insertBefore(menuCallButton,sidebarBottom);
+  }
+
   document.querySelectorAll('[data-wine-slider]').forEach(slider=>{
     const slides=[...slider.querySelectorAll('.wine-slide')];
     if(slides.length<2)return;
