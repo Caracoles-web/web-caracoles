@@ -1458,7 +1458,8 @@ body{
   .carta-page .wine-graphic-card{
     min-height:0;
     overflow:visible;
-    padding:8px clamp(18px,5vw,32px) 0;
+    /* Un poco más de aire bajo la base de la copa antes del botón. */
+    padding:8px clamp(18px,5vw,32px) 54px;
   }
 
   .carta-page .wine-graphic-card img{
@@ -1469,17 +1470,17 @@ body{
     object-fit:contain;
   }
 
-  /* El botón queda centrado en flujo normal entre la base de la copa y
-     la línea superior de "Nuestra selección de vinos". */
+  /* Recupera la colocación simple del botón bajo la copa, centrado.
+     Solo se aumenta ligeramente el aire respecto a la base de la copa. */
   .carta-page .mobile-wine-menu-btn{
-    display:flex;
-    position:relative;
-    left:auto;
-    bottom:auto;
+    display:inline-flex;
+    position:absolute;
+    left:50%;
+    bottom:0;
     z-index:4;
     width:max-content;
-    transform:none;
-    margin:28px auto 0;
+    transform:translate(-50%,50%);
+    margin:0;
     background:#050505;
     white-space:nowrap;
   }
@@ -1488,11 +1489,10 @@ body{
     display:none;
   }
 
-  /* 28 px arriba: misma distancia que entre la copa y el botón.
-     La línea superior empieza tras este mismo intervalo. */
+  /* Espacio natural para el botón solapado antes del bloque de selección. */
   .carta-page .wine-selection-card{
     min-height:0;
-    padding:28px clamp(22px,6vw,38px) 42px;
+    padding:58px clamp(22px,6vw,38px) 42px;
   }
 
   .carta-page .wine-selection-card .wine-panel-copy{
