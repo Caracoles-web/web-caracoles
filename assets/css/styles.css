@@ -1474,14 +1474,22 @@ body{
     object-fit:contain;
   }
 
-  /* El botón de vinos pasa a la intersección entre copa y selección. */
+  /* El botón de vinos queda debajo de la copa, centrado y sin solaparla. */
+  .carta-page .wine-graphic-card{
+    flex-direction:column;
+    align-items:center;
+    padding-bottom:18px;
+  }
+
   .carta-page .mobile-wine-menu-btn{
     display:inline-flex;
-    position:absolute;
-    left:50%;
-    bottom:0;
-    z-index:4;
-    transform:translate(-50%,50%);
+    position:relative;
+    left:auto;
+    bottom:auto;
+    z-index:1;
+    transform:none;
+    align-self:center;
+    margin:18px auto 0;
     background:#050505;
     white-space:nowrap;
   }
@@ -1490,10 +1498,10 @@ body{
     display:none;
   }
 
-  /* Bloque de selección continuo, con espacio para el botón solapado. */
+  /* Bloque de selección continuo: el botón ya queda fuera de la copa. */
   .carta-page .wine-selection-card{
     min-height:0;
-    padding:58px clamp(22px,6vw,38px) 42px;
+    padding:34px clamp(22px,6vw,38px) 42px;
   }
 
   .carta-page .wine-selection-card .wine-panel-copy{
