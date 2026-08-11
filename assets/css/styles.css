@@ -1281,6 +1281,7 @@ body{
 
 /* ===== AJUSTES FINALES · BOTÓN FLOTANTE TELÉFONO · 2026-08 ===== */
 .floating-phone-btn{
+  display:none;
   position:fixed;
   right:32px;
   bottom:34px;
@@ -1288,7 +1289,6 @@ body{
   width:52px;
   height:52px;
   border-radius:50%;
-  display:inline-flex;
   align-items:center;
   justify-content:center;
   background:#111;
@@ -1320,6 +1320,7 @@ body{
 }
 @media (max-width:820px){
   .floating-phone-btn{
+    display:inline-flex;
     right:16px;
     bottom:22px;
     width:52px;
