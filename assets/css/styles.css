@@ -1577,3 +1577,8 @@ body{
     color:#fff;
   }
 }
+
+/* ===== EVENTOS · ÚLTIMO BLOQUE AL RAS DEL FOOTER ===== */
+.eventos-page .eventos-mosaic{
+  padding-bottom:0;
+}
