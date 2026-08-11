@@ -1367,3 +1367,13 @@ body{
     height:32px;
   }
 }
+
+/* ===== AJUSTE IPAD · ELIMINAR HUECO BLANCO BAJO EL FOOTER · 2026-08-11 =====
+   En Safari/iPad con vista de escritorio la página puede quedar más corta que
+   el viewport. El fondo negro prolonga visualmente el footer hasta el borde
+   inferior sin mover ni redimensionar ningún bloque. */
+@media (max-width:1180px){
+  .home-page{
+    background:#050505;
+  }
+}
