@@ -1520,3 +1520,17 @@ body{
     padding:24px clamp(20px,5vw,32px);
   }
 }
+
+/* ===== CARTA & VINOS · MOBILE · DOBLE LÍNEA SELECCIÓN VINOS · 2026-08-11 =====
+   Añade una línea superior idéntica al subrayado existente, con la misma
+   separación respecto al título. No modifica la posición del botón. */
+@media (max-width:820px){
+  .carta-page .wine-selection-copy-inner h3::before{
+    content:"";
+    display:block;
+    width:82%;
+    height:2px;
+    background:#fff;
+    margin:0 auto 18px;
+  }
+}
