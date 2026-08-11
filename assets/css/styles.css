@@ -1331,3 +1331,39 @@ body{
     height:32px;
   }
 }
+
+
+/* ===== BOTÓN TELÉFONO DENTRO DE LA CORTINA MOBILE · 2026-08 ===== */
+.menu-phone-btn{display:none}
+@media (max-width:820px){
+  .menu-phone-btn{
+    display:inline-flex;
+    position:relative;
+    flex:0 0 52px;
+    width:52px;
+    height:52px;
+    margin-top:auto;
+    transform:translateY(-15px);
+    border-radius:50%;
+    align-items:center;
+    justify-content:center;
+    align-self:center;
+    background:#111;
+    color:#fff;
+    border:0;
+    box-shadow:0 8px 20px rgba(0,0,0,.22);
+  }
+  .menu-phone-btn::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border:2px solid #fff;
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .menu-phone-btn svg{
+    display:block;
+    width:32px;
+    height:32px;
+  }
+}
