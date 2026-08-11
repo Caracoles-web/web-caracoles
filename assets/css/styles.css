@@ -1368,12 +1368,27 @@ body{
   }
 }
 
-/* ===== AJUSTE IPAD · ELIMINAR HUECO BLANCO BAJO EL FOOTER · 2026-08-11 =====
-   En Safari/iPad con vista de escritorio la página puede quedar más corta que
-   el viewport. El fondo negro prolonga visualmente el footer hasta el borde
-   inferior sin mover ni redimensionar ningún bloque. */
-@media (max-width:1180px){
-  .home-page{
-    background:#050505;
+/* ===== IPAD SAFARI REAL · OVERSCROLL / HUECO BLANCO · 2026-08-11 =====
+   DevTools no reproduce el rebote elástico de WebKit/iPadOS. En iPad real,
+   al alcanzar los límites vertical u horizontal Safari puede mostrar el
+   lienzo raíz fuera del documento. Se limita ese overscroll y se da al
+   lienzo raíz el mismo negro del footer como respaldo visual. */
+@supports (-webkit-touch-callout: none){
+  @media (min-width:768px) and (max-width:1400px){
+    html{
+      background:#050505;
+      overscroll-behavior-x:none;
+      overscroll-behavior-y:none;
+    }
+    body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      overscroll-behavior-x:none;
+      overscroll-behavior-y:none;
+    }
+    .home-page{
+      background:#050505;
+    }
   }
 }
