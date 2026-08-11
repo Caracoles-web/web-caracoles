@@ -1559,3 +1559,29 @@ body{
     color:#fff;
   }
 }
+
+/* ===== MOBILE · FRANJA CARACOLES TODO EL AÑO · TEXTO EN 2 LÍNEAS + CARACOL MAYOR ===== */
+@media (max-width:820px){
+  .snails-strip{
+    gap:16px;
+    align-items:center;
+  }
+  .snails-strip-icon,
+  .snails-strip img{
+    width:auto;
+    height:54px;
+    flex:0 0 auto;
+  }
+  .snails-strip strong{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:54px;
+    font-size:19px;
+    line-height:1.02;
+  }
+  .snails-strip strong span{
+    display:block;
+  }
+}
