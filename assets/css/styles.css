@@ -803,7 +803,7 @@ body{
 /* ===== CAMBIOS 13 · EVENTOS + CARTA & VINOS ===== */
 .hero-mark{display:block;width:min(156px,44vw);margin:0 auto 18px;opacity:.95}
 .carta-hero{min-height:100vh;position:relative;padding:36px 0}
-.carta-hero::after{background:rgba(0,0,0,.50)}
+.carta-hero::after{background:transparent}
 .carta-hero-copy{max-width:900px;padding:20px 26px}
 .carta-hero-copy h1{font-size:56px;margin:0 0 10px}
 .carta-hero-copy .hero-subline{margin:0 0 14px;font-size:20px;line-height:1.35}
@@ -1001,7 +1001,7 @@ body{
   background-image:url('../images/carta-portada-lechazo-horno-lena.webp')!important;
 }
 .carta-hero::after{
-  background:rgba(0,0,0,.50)!important;
+  background:transparent!important;
 }
 @media (min-width:981px){
   .carta-hero,.eventos-hero{min-height:100vh;}
