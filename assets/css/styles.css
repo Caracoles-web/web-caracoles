@@ -1606,3 +1606,13 @@ body{
     visibility:hidden;
   }
 }
+
+/* ===== CARTA · MOBILE · BAJAR BOTÓN PORTADA · 2026-08-14 =====
+   Desplaza únicamente Carta/Menu hacia abajo para liberar visualmente el plato.
+   Caracol, título, texto y encuadre permanecen sin cambios. */
+@media (max-width:820px){
+  .carta-page .carta-hero-copy > .btn{
+    position:relative;
+    top:60px;
+  }
+}
