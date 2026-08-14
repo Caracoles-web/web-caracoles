@@ -1058,6 +1058,18 @@ body{
   cursor:pointer;
 }
 
+/* Carta / Wine List ya enlazan a PDF descargable. */
+.carta-page .mobile-wine-menu-btn,
+.carta-page .desktop-wine-menu-btn{
+  text-decoration:none;
+  cursor:pointer;
+}
+.carta-page .mobile-wine-menu-btn:focus-visible,
+.carta-page .desktop-wine-menu-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(138,0,33,.30);
+}
+
 /* Esta regla final tiene prioridad sobre los estilos contextuales de Carta,
    Reservas y el footer, que antes anulaban el hover en algunos botones. */
 .btn:hover,
