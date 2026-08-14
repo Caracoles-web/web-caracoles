@@ -74,14 +74,47 @@
     show(0);
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(()=>show(i+1),5200);}
   });
+  // Sliders de galería: permiten una duración base por bloque y una duración
+  // especial para la primera foto en móvil. En desktop se desfasan 1 s para
+  // evitar que dos paneles visibles cambien casi simultáneamente.
+  document.querySelectorAll('img[data-mobile-lazy-src]').forEach(img=>{
+    const src=img.dataset.mobileLazySrc;
+    if(!src)return;
+    if(!window.matchMedia('(max-width: 820px)').matches){
+      img.src=src;
+      return;
+    }
+    const load=()=>{if(!img.getAttribute('src'))img.src=src;};
+    const target=img.closest('[data-gallery-slider]')||img;
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        if(entries.some(entry=>entry.isIntersecting)){load();observer.disconnect();}
+      },{rootMargin:'500px 0px'});
+      observer.observe(target);
+    }else{
+      load();
+    }
+  });
+
   document.querySelectorAll('[data-gallery-slider]').forEach((slider,sliderIndex)=>{
     const slides=[...slider.querySelectorAll('.gallery-slide')];
     if(slides.length<2)return;
     let i=0;
-    const delay=Number(slider.dataset.galleryDelay)||5200;
+    let timer;
+    const baseDelay=Number(slider.dataset.galleryDelay)||5200;
+    const mobileFirstDelay=Number(slider.dataset.mobileFirstDelay)||0;
+    const isMobile=()=>window.matchMedia('(max-width: 820px)').matches;
     const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((slide,j)=>slide.classList.toggle('active',j===i));};
+    const currentDelay=()=>mobileFirstDelay&&isMobile()&&i===0?mobileFirstDelay:baseDelay;
+    const scheduleNext=()=>{
+      timer=setTimeout(()=>{show(i+1);scheduleNext();},currentDelay());
+    };
     show(0);
-    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setTimeout(()=>setInterval(()=>show(i+1),delay),sliderIndex*450);}
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const phaseOffset=isMobile()?0:sliderIndex*1000;
+      if(phaseOffset){timer=setTimeout(scheduleNext,phaseOffset);}
+      else{scheduleNext();}
+    }
   });
 
   document.querySelectorAll('[data-event-slider]').forEach((slider,sliderIndex)=>{
