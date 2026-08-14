@@ -1583,12 +1583,47 @@ body{
   padding-bottom:0;
 }
 
-/* ===== AJUSTE ESENCIAL · ESENCIAS MOBILE + ORDEN EVENTOS DESKTOP · 2026-08 ===== */
 
-/* EVENTOS (desktop):
+
+/* ===== CARTA · MOBILE · ELEVAR CARACOL + TEXTO · 2026-08-14 =====
+   Se mantiene la portada original en todas las vistas. En mobile se eleva
+   únicamente el caracol, título y listado; el botón conserva su posición. */
+@media (max-width:820px){
+  .carta-hero-copy .hero-mark,
+  .carta-hero-copy h1,
+  .carta-hero-copy .hero-list{
+    position:relative;
+    top:-64px;
+  }
+}
+
+/* ===== CARTA · MOBILE · SIMPLIFICAR TEXTO PORTADA · 2026-08-14 =====
+   En mobile se muestra únicamente la primera línea descriptiva. Las cuatro
+   restantes se ocultan conservando su espacio para que el botón no cambie
+   de posición. Desktop/tablet permanecen intactos. */
+@media (max-width:820px){
+  .carta-page .carta-hero-copy .hero-list p:nth-child(n+2){
+    visibility:hidden;
+  }
+}
+
+/* ===== CARTA · MOBILE · BAJAR BOTÓN PORTADA · 2026-08-14 =====
+   Desplaza únicamente Carta/Menu hacia abajo para liberar visualmente el plato.
+   Caracol, título, texto y encuadre permanecen sin cambios. */
+@media (max-width:820px){
+  .carta-page .carta-hero-copy > .btn{
+    position:relative;
+    top:60px;
+  }
+}
+
+/* ===== AJUSTES EVENTOS + ESENCIAS MOBILE · 2026-08-15 ===== */
+
+/* EVENTOS · DESKTOP
+   Orden visual:
    1) Menús/Eventos = texto izquierda / foto derecha
    2) Bodega = foto izquierda / texto derecha
-   3) Asador Caracoles = texto izquierda / foto derecha */
+   3) Asador = texto izquierda / foto derecha */
 @media (min-width:821px){
   .eventos-mosaic-inner{
     grid-template-areas:
@@ -1604,19 +1639,38 @@ body{
   .eventos-asador-slider{grid-area:asador-photo}
 }
 
-/* ESENCIAS DE TEMPORADA (solo mobile teléfono):
-   - desaparece el fondo/marco negro
-   - la foto ocupa todo el ancho disponible
-   - se mantiene la proporción actual del marco
-   - se sube ligeramente la tipografía */
+/* EVENTOS · MOBILE
+   Mismo orden temático que desktop, manteniendo siempre TEXTO -> FOTO. */
+@media (max-width:820px){
+  .eventos-mosaic-inner .eventos-events-copy{grid-row:1}
+  .eventos-mosaic-inner .eventos-especiales-slider{grid-row:2}
+  .eventos-mosaic-inner .eventos-catas-copy{grid-row:3}
+  .eventos-mosaic-inner .eventos-catas-slider{grid-row:4}
+  .eventos-mosaic-inner .eventos-about-copy-cell{grid-row:5}
+  .eventos-mosaic-inner .eventos-asador-slider{grid-row:6}
+
+  /* Solo texto descriptivo: ligera subida de tamaño. Los títulos no cambian. */
+  .eventos-copy-cell .eventos-summary-copy,
+  .eventos-copy-cell .eventos-contact-copy,
+  .eventos-copy-cell .eventos-about-copy{
+    font-size:13.5px!important;
+  }
+
+  /* Asador Caracoles: ocultar solo en mobile las dos últimas líneas. */
+  .eventos-about-copy-cell .eventos-about-copy:nth-last-of-type(-n+2){
+    display:none;
+  }
+}
+
+/* ESENCIAS DE TEMPORADA · SMARTPHONE
+   Sin fondo/marco negro, foto a todo el ancho y conservando la proporción
+   vertical actual del contenedor móvil. Tipografía ligeramente mayor. */
 @media (max-width:520px){
   .season-grid{
     width:100%;
     max-width:none;
   }
-  .season-card{
-    margin:0;
-  }
+  .season-card{margin:0}
   .season-photo{
     width:100%;
     background:transparent;
