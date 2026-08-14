@@ -1583,36 +1583,64 @@ body{
   padding-bottom:0;
 }
 
+/* ===== AJUSTE ESENCIAL · ESENCIAS MOBILE + ORDEN EVENTOS DESKTOP · 2026-08 ===== */
 
-
-/* ===== CARTA · MOBILE · ELEVAR CARACOL + TEXTO · 2026-08-14 =====
-   Se mantiene la portada original en todas las vistas. En mobile se eleva
-   únicamente el caracol, título y listado; el botón conserva su posición. */
-@media (max-width:820px){
-  .carta-hero-copy .hero-mark,
-  .carta-hero-copy h1,
-  .carta-hero-copy .hero-list{
-    position:relative;
-    top:-64px;
+/* EVENTOS (desktop):
+   1) Menús/Eventos = texto izquierda / foto derecha
+   2) Bodega = foto izquierda / texto derecha
+   3) Asador Caracoles = texto izquierda / foto derecha */
+@media (min-width:821px){
+  .eventos-mosaic-inner{
+    grid-template-areas:
+      "events-text events-photo"
+      "bodega-photo bodega-text"
+      "asador-text asador-photo";
   }
+  .eventos-events-copy{grid-area:events-text}
+  .eventos-especiales-slider{grid-area:events-photo}
+  .eventos-catas-slider{grid-area:bodega-photo}
+  .eventos-catas-copy{grid-area:bodega-text}
+  .eventos-about-copy-cell{grid-area:asador-text}
+  .eventos-asador-slider{grid-area:asador-photo}
 }
 
-/* ===== CARTA · MOBILE · SIMPLIFICAR TEXTO PORTADA · 2026-08-14 =====
-   En mobile se muestra únicamente la primera línea descriptiva. Las cuatro
-   restantes se ocultan conservando su espacio para que el botón no cambie
-   de posición. Desktop/tablet permanecen intactos. */
-@media (max-width:820px){
-  .carta-page .carta-hero-copy .hero-list p:nth-child(n+2){
-    visibility:hidden;
+/* ESENCIAS DE TEMPORADA (solo mobile teléfono):
+   - desaparece el fondo/marco negro
+   - la foto ocupa todo el ancho disponible
+   - se mantiene la proporción actual del marco
+   - se sube ligeramente la tipografía */
+@media (max-width:520px){
+  .season-grid{
+    width:100%;
+    max-width:none;
   }
-}
-
-/* ===== CARTA · MOBILE · BAJAR BOTÓN PORTADA · 2026-08-14 =====
-   Desplaza únicamente Carta/Menu hacia abajo para liberar visualmente el plato.
-   Caracol, título, texto y encuadre permanecen sin cambios. */
-@media (max-width:820px){
-  .carta-page .carta-hero-copy > .btn{
-    position:relative;
-    top:60px;
+  .season-card{
+    margin:0;
+  }
+  .season-photo{
+    width:100%;
+    background:transparent;
+    border:0!important;
+    aspect-ratio:1.25 / 1;
+    overflow:hidden;
+  }
+  .season-photo img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .season-card figcaption{
+    min-height:90px;
+    padding:14px 12px 18px;
+  }
+  .season-card figcaption strong{
+    font-size:17px;
+    line-height:1.22;
+  }
+  .season-card figcaption span{
+    font-size:14px;
+    line-height:1.28;
+    margin-top:5px;
   }
 }
