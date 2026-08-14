@@ -1058,18 +1058,6 @@ body{
   cursor:pointer;
 }
 
-/* Carta / Wine List ya enlazan a PDF descargable. */
-.carta-page .mobile-wine-menu-btn,
-.carta-page .desktop-wine-menu-btn{
-  text-decoration:none;
-  cursor:pointer;
-}
-.carta-page .mobile-wine-menu-btn:focus-visible,
-.carta-page .desktop-wine-menu-btn:focus-visible{
-  outline:none;
-  box-shadow:0 0 0 3px rgba(138,0,33,.30);
-}
-
 /* Esta regla final tiene prioridad sobre los estilos contextuales de Carta,
    Reservas y el footer, que antes anulaban el hover en algunos botones. */
 .btn:hover,
@@ -1593,4 +1581,14 @@ body{
 /* ===== EVENTOS · ÚLTIMO BLOQUE AL RAS DEL FOOTER ===== */
 .eventos-page .eventos-mosaic{
   padding-bottom:0;
+}
+
+/* ===== CARTA · PORTADA EXCLUSIVA SMARTPHONE · 2026-08-14 =====
+   En smartphones se usa una imagen específica y el encuadre parte
+   de la esquina inferior derecha. Tablet y desktop permanecen intactos. */
+@media (max-width:600px){
+  .carta-hero{
+    background-image:url('../images/carta-portada-lechazo-horno-lena-MOBILE.webp')!important;
+    background-position:right bottom!important;
+  }
 }
