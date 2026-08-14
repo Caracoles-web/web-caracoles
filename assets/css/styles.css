@@ -1583,12 +1583,16 @@ body{
   padding-bottom:0;
 }
 
-/* ===== CARTA · PORTADA EXCLUSIVA SMARTPHONE · 2026-08-14 =====
-   En smartphones se usa una imagen específica y el encuadre parte
-   de la esquina inferior derecha. Tablet y desktop permanecen intactos. */
-@media (max-width:600px){
-  .carta-hero{
-    background-image:url('../images/carta-portada-lechazo-horno-lena-MOBILE.webp')!important;
-    background-position:right bottom!important;
+
+
+/* ===== CARTA · MOBILE · ELEVAR CARACOL + TEXTO · 2026-08-14 =====
+   Se mantiene la portada original en todas las vistas. En mobile se eleva
+   únicamente el caracol, título y listado; el botón conserva su posición. */
+@media (max-width:820px){
+  .carta-hero-copy .hero-mark,
+  .carta-hero-copy h1,
+  .carta-hero-copy .hero-list{
+    position:relative;
+    top:-64px;
   }
 }
