@@ -1705,3 +1705,40 @@ body{
     min-height:48px;
   }
 }
+
+/* ===== HOME · ESENCIAS DE TEMPORADA · DESKTOP NEGRO + FOTOS 1:1 =====
+   Solo desktop/tablet grande. Mobile conserva exactamente su diseño actual. */
+@media (min-width:821px){
+  .season-intro,
+  .season-grid,
+  .season-card,
+  .season-card figcaption{
+    background:#000!important;
+    color:#fff!important;
+  }
+
+  .season-intro h2,
+  .season-intro p,
+  .season-card figcaption strong,
+  .season-card figcaption span{
+    color:#fff!important;
+  }
+
+  /* Marco negro más generoso alrededor de cada foto. */
+  .season-photo,
+  .season-card:first-child .season-photo,
+  .season-card:last-child .season-photo{
+    width:calc(100% - 20px);
+    margin:12px 10px 10px;
+    aspect-ratio:1 / 1;
+    background:#000;
+    border:0!important;
+    overflow:hidden;
+  }
+
+  .season-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+}
