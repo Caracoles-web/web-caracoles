@@ -1895,3 +1895,47 @@ body{
 .contact-page .map-wrap iframe{
   filter:grayscale(78%) saturate(48%) brightness(1.03) contrast(.92);
 }
+
+/* ===== EVENTOS · RESTAURAR ORDEN APROBADO DESKTOP + MOBILE · 2026-08-15 ===== */
+
+/* DESKTOP
+   1) Menús/Eventos = texto izquierda / foto derecha
+   2) Bodega = foto izquierda / texto derecha
+   3) Asador = texto izquierda / foto derecha */
+@media (min-width:821px){
+  .eventos-mosaic-inner{
+    grid-template-areas:
+      "events-text events-photo"
+      "bodega-photo bodega-text"
+      "asador-text asador-photo";
+  }
+  .eventos-events-copy{grid-area:events-text}
+  .eventos-especiales-slider{grid-area:events-photo}
+  .eventos-catas-slider{grid-area:bodega-photo}
+  .eventos-catas-copy{grid-area:bodega-text}
+  .eventos-about-copy-cell{grid-area:asador-text}
+  .eventos-asador-slider{grid-area:asador-photo}
+}
+
+/* MOBILE
+   Mismo orden temático que desktop, manteniendo siempre TEXTO -> FOTO. */
+@media (max-width:820px){
+  .eventos-mosaic-inner .eventos-events-copy{grid-row:1}
+  .eventos-mosaic-inner .eventos-especiales-slider{grid-row:2}
+  .eventos-mosaic-inner .eventos-catas-copy{grid-row:3}
+  .eventos-mosaic-inner .eventos-catas-slider{grid-row:4}
+  .eventos-mosaic-inner .eventos-about-copy-cell{grid-row:5}
+  .eventos-mosaic-inner .eventos-asador-slider{grid-row:6}
+
+  /* Solo texto descriptivo: ligera subida de tamaño. Los títulos no cambian. */
+  .eventos-copy-cell .eventos-summary-copy,
+  .eventos-copy-cell .eventos-contact-copy,
+  .eventos-copy-cell .eventos-about-copy{
+    font-size:13.5px!important;
+  }
+
+  /* Asador Caracoles: ocultar solo en mobile las dos últimas líneas. */
+  .eventos-about-copy-cell .eventos-about-copy:nth-last-of-type(-n+2){
+    display:none;
+  }
+}
