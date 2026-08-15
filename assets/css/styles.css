@@ -1707,7 +1707,7 @@ body{
 }
 
 /* ===== HOME · ESENCIAS DE TEMPORADA · DESKTOP NEGRO + FOTOS 1:1 =====
-   Solo desktop/tablet grande. Mobile conserva exactamente su diseño actual. */
+   Solo desktop/tablet grande. */
 @media (min-width:821px){
   .season-intro,
   .season-grid,
@@ -1724,7 +1724,6 @@ body{
     color:#fff!important;
   }
 
-  /* Marco negro más generoso alrededor de cada foto. */
   .season-photo,
   .season-card:first-child .season-photo,
   .season-card:last-child .season-photo{
@@ -1740,5 +1739,53 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
+  }
+}
+
+/* ===== HOME · ESENCIAS DE TEMPORADA · RESTAURAR SMARTPHONE =====
+   Recupera exactamente el comportamiento aprobado antes del cambio desktop:
+   sin marco/fondo negro visible, foto a todo el ancho y proporción 1.25:1. */
+@media (max-width:520px){
+  .season-grid{
+    width:100%;
+    max-width:none;
+  }
+  .season-card{
+    margin:0;
+    background:var(--paper-soft)!important;
+    color:#050505!important;
+  }
+  .season-photo,
+  .season-card:first-child .season-photo,
+  .season-card:last-child .season-photo{
+    width:100%;
+    margin:0;
+    background:transparent!important;
+    border:0!important;
+    aspect-ratio:1.25 / 1;
+    overflow:hidden;
+  }
+  .season-photo img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .season-card figcaption{
+    min-height:90px;
+    padding:14px 12px 18px;
+    background:var(--paper-soft)!important;
+    color:#050505!important;
+  }
+  .season-card figcaption strong{
+    font-size:17px;
+    line-height:1.22;
+    color:#050505!important;
+  }
+  .season-card figcaption span{
+    font-size:14px;
+    line-height:1.28;
+    margin-top:5px;
+    color:#050505!important;
   }
 }
