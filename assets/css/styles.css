@@ -1024,6 +1024,7 @@ body{
 @media (min-width:981px){
   .carta-hero,.eventos-hero{min-height:100vh;}
   .parallax-hero{background-attachment:fixed!important;}
+  .eventos-hero{background-position:center top!important;}
 }
 @media (max-width:980px), (prefers-reduced-motion:reduce){
   .parallax-hero{background-attachment:scroll!important;}
