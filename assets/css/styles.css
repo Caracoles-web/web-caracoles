@@ -1889,3 +1889,9 @@ body{
     border-color:#fff;
   }
 }
+
+/* ===== RESERVAS · MAPA GRIS PIEDRA · 2026-08-15 =====
+   ES/EN · Desktop + mobile. Reduce el color del mapa sin perder del todo el rojo del marcador. */
+.contact-page .map-wrap iframe{
+  filter:grayscale(78%) saturate(48%) brightness(1.03) contrast(.92);
+}
