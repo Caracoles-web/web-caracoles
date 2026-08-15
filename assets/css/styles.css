@@ -1789,3 +1789,101 @@ body{
     color:#050505!important;
   }
 }
+
+
+/* ===== RESERVAS · HERO PLAZA MAYOR · 2026-08-15 =====
+   Desktop: fotografía 1680×770 centrada, con el palacio como foco y CTA abajo a la derecha.
+   Mobile: bloque negro simplificado, sin fotografía. */
+.contact-hero{
+  position:relative;
+  width:100%;
+  aspect-ratio:1680 / 770;
+  min-height:320px;
+  overflow:hidden;
+  background:#111 url('../images/plaza-mayor-lerma.webp') center center / cover no-repeat;
+  color:#fff;
+}
+.contact-hero-copy{
+  position:absolute;
+  right:clamp(34px,7vw,110px);
+  bottom:clamp(28px,8%,72px);
+  z-index:2;
+  width:min(300px,34%);
+  text-align:left;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.82);
+}
+.contact-hero-copy h1{
+  margin:0 0 4px;
+  font-size:clamp(30px,2.2vw,40px);
+  line-height:1.08;
+}
+.contact-hero-copy p{
+  margin:0 0 16px;
+  line-height:1.25;
+}
+.contact-hero-copy .phone{
+  display:inline-block;
+  color:#fff;
+  font-size:clamp(22px,1.55vw,27px);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+}
+.contact-hero-copy .contact-map-btn{
+  min-width:126px;
+  padding:8px 26px;
+  font-size:14px;
+  background:rgba(0,0,0,.58);
+  color:#fff;
+  border-color:#fff;
+  text-shadow:none;
+}
+.contact-hero-copy .contact-map-btn:hover,
+.contact-hero-copy .contact-map-btn:focus-visible{
+  background:#fff;
+  color:#050505;
+  border-color:#050505;
+}
+
+@media (max-width:820px){
+  .contact-hero{
+    aspect-ratio:auto;
+    min-height:0;
+    background:#000;
+    padding:44px 24px 48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-hero-copy{
+    position:static;
+    width:100%;
+    text-align:center;
+    text-shadow:none;
+  }
+  .contact-hero-copy h1{
+    margin:0 0 5px;
+    font-size:30px;
+  }
+  .contact-hero-copy p{
+    margin:0 0 17px;
+  }
+  .contact-hero-copy .phone{
+    color:#fff;
+    font-size:22px;
+  }
+  .contact-hero-copy .contact-map-btn{
+    min-width:126px;
+    padding:8px 24px;
+    background:#000;
+    color:#fff;
+    border-color:#fff;
+  }
+  .contact-hero-copy .contact-map-btn:hover,
+  .contact-hero-copy .contact-map-btn:focus-visible{
+    background:#fff;
+    color:#050505;
+    border-color:#fff;
+  }
+}
