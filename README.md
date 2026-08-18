@@ -8,7 +8,7 @@ Primera versión de trabajo para GitHub Pages.
 - Blog eliminado.
 - Sin formularios de contacto/reserva por ahora.
 - Reservas por teléfono.
-- ES / EN sin banderas.
+- ES / EN / FR sin banderas.
 - RRSS: TripAdvisor, Facebook e Instagram.
 - YouTube no aparece como red social; el canal se usa sólo como repositorio audiovisual.
 - TikTok y acceso redundante a Google Maps eliminados.
@@ -49,3 +49,9 @@ Primera versión de trabajo para GitHub Pages.
 - Eventos mantiene su portada sin oscurecimiento; Carta & Vinos conserva overlay negro al 50%.
 - El sello Travellers' Choice 2022 del footer enlaza a la ficha de Asador Caracoles en TripAdvisor.
 - Eliminado el recurso huérfano `historia-hero.jpg` tras la retirada de la página Historia.
+
+
+## Versión FR · 2026-08-18
+- Añadida versión francesa completa en `/fr/`, reutilizando CSS, JS e imágenes comunes.
+- Selector de idiomas unificado: ES · EN · FR en desktop y mobile.
+- Los documentos franceses se esperan en `assets/cartas/menu-fr.pdf` y `assets/cartas/carte-des-vins-fr.pdf`.
