@@ -2112,3 +2112,12 @@ body{
   .contact-hero-copy h1,
   .contact-hero-copy p { text-align:center; }
 }
+
+/* CARACOLES · CARTA Y VINOS: igualar negros del bloque sin tocar
+   ilustración, panel de selección, textos ni botones (desktop y móvil). */
+.carta-page .wine-section--wines,
+.carta-page .wine-section--wines .wine-heading-row,
+.carta-page .wine-section--wines .wine-panels--selection,
+.carta-page .wine-section--wines .wine-graphic-card {
+  background-color:#000000;
+}
