@@ -2121,3 +2121,44 @@ body{
 .carta-page .wine-section--wines .wine-graphic-card {
   background-color:#000000;
 }
+
+/* ===== CARACOLES · BOTONES + IDIOMAS · 23-09-2026 =====
+   1) La pagina/idioma activo no hace hover de ampliacion.
+   2) El idioma activo usa #8A0021, sin subrayado (desktop y movil).
+   3) Los idiomas inactivos amplian su texto solo en desktop con raton.
+   4) Los CTA equivalentes mantienen el fondo normal; al pasar el raton,
+      pulsar o enfocar solo cambia el BLANCO del fondo a translucido;
+      el texto permanece negro solido. */
+.sidebar .languages a.active {
+  color:#8a0021!important;
+  border-bottom:0!important;
+  text-decoration:none!important;
+}
+.sidebar .languages a.active::after {
+  content:none!important;
+  display:none!important;
+}
+/* Anular el hover antiguo de idiomas: lo activamos selectivamente abajo. */
+.sidebar .languages a:hover,
+.sidebar .languages a.active:hover {
+  transform:none;
+  text-shadow:none;
+}
+@media (min-width:821px) and (hover:hover) and (pointer:fine) {
+  .sidebar .languages a:not(.active):hover {
+    transform:scale(1.13);
+    text-shadow:0 2px 8px rgba(0,0,0,.10);
+  }
+}
+/* Refuerzo frente a estilos anteriores mas especificos por seccion.
+   No cambia el color ni la transparencia del propio texto. */
+.btn:is(:hover,:active,:focus-visible),
+.carta-hero-copy .btn:is(:hover,:active,:focus-visible),
+.compact-footer .footer-hours .btn:is(:hover,:active,:focus-visible),
+.mini-btn:is(:hover,:active,:focus-visible),
+.carta-page .mini-btn:is(:hover,:active,:focus-visible),
+.carta-placeholder:is(:hover,:active,:focus-visible) {
+  background-color:rgba(255,255,255,.76);
+  color:#050505;
+  text-decoration:none;
+}
