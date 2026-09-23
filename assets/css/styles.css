@@ -2024,43 +2024,40 @@ body{
 /* Pie negro puro. No cambia los fondos de otros bloques. */
 .footer { background:#000; }
 
-/* Servicios: conservar orden original Wi-Fi (izq.) → WC (dcha.).
-   Alinear el primero hacia la derecha de su MITAD y el segundo hacia
-   la izquierda de la suya; sin intercambiar su lugar en el HTML.
-   Cálculo de altura real del dibujo SVG: Wi-Fi ocupa ~93.75% de la
-   altura de su lienzo; WC ocupa 100%. Igualar tinta visible, no sólo cajas. */
+/* Servicios: centrar la anchura REAL del conjunto Wi-Fi + WC, no
+   dos columnas iguales (los dos SVG tienen anchos muy diferentes).
+   Conservar Wi-Fi a la izquierda, WC a la derecha y la altura visible
+   igualada en desktop y móvil. El blanco del SVG no se modifica. */
 .compact-footer .service-icons {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  display:flex;
+  flex-wrap:nowrap;
   align-items:center;
-  justify-items:center;
+  justify-content:center;
   gap:16px;
-  width:210px;
+  width:max-content;
   max-width:100%;
   margin:8px auto 0;
 }
 .compact-footer .service-icons img.service-icon-wifi,
 .compact-footer .service-icons img.service-icon-wc {
   display:block;
-  max-width:none;
+  flex:0 0 auto;
   width:auto;
+  max-width:none;
   object-fit:contain;
 }
 .compact-footer .service-icons img.service-icon-wifi {
-  height:36.27px; /* dibujo visible ≈ 34px */
-  justify-self:end;
+  height:36.27px; /* altura visible del dibujo ~34px */
 }
 .compact-footer .service-icons img.service-icon-wc {
-  height:34px; /* dibujo visible ≈ 34px */
-  justify-self:start;
+  height:34px; /* altura visible del dibujo ~34px */
 }
 @media (max-width:820px) {
-  .compact-footer .service-icons { width:190px; }
   .compact-footer .service-icons img.service-icon-wifi {
-    height:32px; /* dibujo visible ≈ 30px */
+    height:32px; /* altura visible del dibujo ~30px */
   }
   .compact-footer .service-icons img.service-icon-wc {
-    height:30px; /* dibujo visible ≈ 30px */
+    height:30px; /* altura visible del dibujo ~30px */
   }
 }
 
