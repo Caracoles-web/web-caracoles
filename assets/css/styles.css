@@ -2081,36 +2081,29 @@ body{
   .sidebar .side-nav a:not(.active):hover { transform:scale(1.13); }
   .sidebar .side-nav a.active:hover { transform:none; }
 }
-/* Todos los botones de fondo blanco en hover/foco: únicamente el fondo
-   se vuelve translúcido, el TEXTO PERMANECE NEGRO Y OPACO.
-   Se aplica también en móvil cuando un botón recibe foco o pulsación. */
-.btn:hover,
-.btn:focus-visible,
-.btn:active,
-.carta-hero-copy .btn:hover,
-.carta-hero-copy .btn:focus-visible,
-.carta-hero-copy .btn:active,
-.compact-footer .footer-hours .btn:hover,
-.compact-footer .footer-hours .btn:focus-visible,
-.compact-footer .footer-hours .btn:active,
-.mini-btn:hover,
-.mini-btn:focus-visible,
-.mini-btn:active,
-.carta-placeholder:hover,
-.carta-placeholder:focus-visible {
+/* CTA: white opaque on interaction for all buttons except the Carta hero
+   over photography. Text stays fully opaque black. Desktop and mobile. */
+.btn:is(:hover,:focus-visible,:active),
+.mini-btn:is(:hover,:focus-visible,:active),
+.carta-placeholder:is(:hover,:focus-visible,:active),
+.compact-footer .footer-hours .btn:is(:hover,:focus-visible,:active) {
+  background:#fff;
+  color:#050505;
+  border-color:#fff;
+  text-decoration:none;
+}
+/* Sole exception: Carta CTA is on a photograph, so its interactive
+   white background remains translucent, but the text stays solid black. */
+.carta-page .carta-hero-copy .btn:is(:hover,:focus-visible,:active) {
   background:rgba(255,255,255,.76);
   color:#050505;
+  border-color:#fff;
+  text-decoration:none;
 }
 /* Reservas: quitado CTA Mapa/Map/Plan en ES/EN/FR, se conserva mapa inferior.
    Sin botón, el teléfono ocupa el borde inferior que antes tenía el CTA. */
 @media (min-width:821px) {
   .contact-hero-copy p { margin-bottom:0; }
-}
-/* En móvil título y teléfono centrados (hero simplificado original). */
-@media (max-width:820px) {
-  .contact-hero-copy,
-  .contact-hero-copy h1,
-  .contact-hero-copy p { text-align:center; }
 }
 
 /* CARACOLES · CARTA Y VINOS: igualar negros del bloque sin tocar
@@ -2150,15 +2143,68 @@ body{
     text-shadow:0 2px 8px rgba(0,0,0,.10);
   }
 }
-/* Refuerzo frente a estilos anteriores mas especificos por seccion.
-   No cambia el color ni la transparencia del propio texto. */
+/* Reafirmar los CTA sobre fondos oscuros tras los estilos específicos
+   de Carta/Vinos y pie. El CTA Carta en foto es la única excepción. */
 .btn:is(:hover,:active,:focus-visible),
-.carta-hero-copy .btn:is(:hover,:active,:focus-visible),
 .compact-footer .footer-hours .btn:is(:hover,:active,:focus-visible),
 .mini-btn:is(:hover,:active,:focus-visible),
 .carta-page .mini-btn:is(:hover,:active,:focus-visible),
 .carta-placeholder:is(:hover,:active,:focus-visible) {
+  background-color:#fff;
+  color:#050505;
+  border-color:#fff;
+  text-decoration:none;
+}
+.carta-page .carta-hero-copy .btn:is(:hover,:active,:focus-visible) {
   background-color:rgba(255,255,255,.76);
   color:#050505;
-  text-decoration:none;
+  border-color:#fff;
+}
+
+/* Reservas mobile: restore the same black-and-white Plaza Mayor photograph
+   used on desktop and place a slightly smaller title + phone at bottom right.
+   Desktop layout, bottom interactive map and contact information unchanged. */
+@media (max-width:820px) {
+  .contact-page .contact-hero {
+    position:relative;
+    display:block;
+    aspect-ratio:auto;
+    min-height:clamp(265px,77vw,340px);
+    padding:0;
+    background:#111 url('../images/plaza-mayor-lerma.webp') center center / cover no-repeat;
+  }
+  .contact-page .contact-hero::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom,transparent 54%,rgba(0,0,0,.50) 100%);
+    pointer-events:none;
+  }
+  .contact-page .contact-hero .contact-hero-copy {
+    position:absolute;
+    z-index:2;
+    top:auto;
+    right:clamp(16px,5vw,24px);
+    bottom:clamp(17px,5vw,24px);
+    left:auto;
+    width:calc(100% - 32px);
+    max-width:300px;
+    padding:0;
+    text-align:right;
+    text-shadow:0 2px 6px rgba(0,0,0,.92);
+  }
+  .contact-page .contact-hero .contact-hero-copy h1 {
+    font-size:clamp(25px,6.9vw,28px);
+    line-height:1.10;
+    margin:0 0 3px;
+    text-align:right;
+  }
+  .contact-page .contact-hero .contact-hero-copy p {
+    margin:0;
+    text-align:right;
+    line-height:1.2;
+  }
+  .contact-page .contact-hero .contact-hero-copy .phone {
+    font-size:clamp(18px,4.9vw,20px);
+  }
 }
