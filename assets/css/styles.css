@@ -2063,3 +2063,52 @@ body{
     height:30px; /* dibujo visible ≈ 30px */
   }
 }
+
+/* ===== CARACOLES · ACTUALIZACIÓN WEB · 23-09-2026 =====
+   SOLO DESKTOP: +2 px respecto al último ZIP en activo e inactivo.
+   Mantener centrado, gap de 34 px y color granate de la opción activa. */
+@media (min-width:1101px) {
+  .sidebar .side-nav a { font-size:21px; }
+  .sidebar .side-nav a.active { font-size:22px; }
+}
+@media (min-width:821px) and (max-width:1100px) {
+  .sidebar .side-nav a { font-size:18px; }
+  .sidebar .side-nav a.active { font-size:19px; }
+}
+/* Hover reforzado solo para las opciones inactivas en desktop con ratón.
+   Transform no altera el espacio reservado ni mueve los demás enlaces. */
+@media (min-width:821px) and (hover:hover) and (pointer:fine) {
+  .sidebar .side-nav a:not(.active):hover { transform:scale(1.13); }
+  .sidebar .side-nav a.active:hover { transform:none; }
+}
+/* Todos los botones de fondo blanco en hover/foco: únicamente el fondo
+   se vuelve translúcido, el TEXTO PERMANECE NEGRO Y OPACO.
+   Se aplica también en móvil cuando un botón recibe foco o pulsación. */
+.btn:hover,
+.btn:focus-visible,
+.btn:active,
+.carta-hero-copy .btn:hover,
+.carta-hero-copy .btn:focus-visible,
+.carta-hero-copy .btn:active,
+.compact-footer .footer-hours .btn:hover,
+.compact-footer .footer-hours .btn:focus-visible,
+.compact-footer .footer-hours .btn:active,
+.mini-btn:hover,
+.mini-btn:focus-visible,
+.mini-btn:active,
+.carta-placeholder:hover,
+.carta-placeholder:focus-visible {
+  background:rgba(255,255,255,.76);
+  color:#050505;
+}
+/* Reservas: quitado CTA Mapa/Map/Plan en ES/EN/FR, se conserva mapa inferior.
+   Sin botón, el teléfono ocupa el borde inferior que antes tenía el CTA. */
+@media (min-width:821px) {
+  .contact-hero-copy p { margin-bottom:0; }
+}
+/* En móvil título y teléfono centrados (hero simplificado original). */
+@media (max-width:820px) {
+  .contact-hero-copy,
+  .contact-hero-copy h1,
+  .contact-hero-copy p { text-align:center; }
+}
