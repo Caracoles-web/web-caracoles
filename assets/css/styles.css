@@ -1969,3 +1969,97 @@ body{
     background-attachment:scroll!important;
   }
 }
+
+/* ===== CARACOLES · CAMBIOS CONFIRMADOS 23-09-2026 =====
+   Menú: activo granate y discretamente mayor; sin rayas decorativas
+   ni en reposo, ni en hover, ni en activo (desktop y móvil). */
+.sidebar .side-nav a::before,
+.sidebar .side-nav a::after {
+  content:none!important;
+  display:none!important;
+}
+.sidebar .side-nav a.active {
+  color:#8a0021!important;
+}
+
+/* SOLO DESKTOP · Menú centrado en el espacio vertical entre el logo
+   y el bloque inferior de idiomas/RRSS. Separación homogénea y mayor
+   entre las cuatro entradas; los cambios no afectan al menú móvil. */
+@media (min-width:821px) {
+  .sidebar .logo-link {
+    flex-shrink:0;
+  }
+  .sidebar .side-nav {
+    flex:1 0 auto;
+    margin:0;
+    justify-content:center;
+    row-gap:34px;
+  }
+  .sidebar .sidebar-bottom {
+    margin-top:0;
+    margin-bottom:72px;
+    padding-top:0;
+    flex-shrink:0;
+  }
+}
+/* +1 px respecto a la entrega anterior en TODOS los enlaces desktop:
+   >=1101: inactivo 18→19 y activo 19→20.
+   821–1100: inactivo 15→16 y activo 16→17.
+   El activo mantiene su diferencia de 1 px y el color #8A0021. */
+@media (min-width:1101px) {
+  .sidebar .side-nav a { font-size:19px; }
+  .sidebar .side-nav a.active { font-size:20px; }
+}
+@media (min-width:821px) and (max-width:1100px) {
+  .sidebar .side-nav a { font-size:16px; }
+  .sidebar .side-nav a.active { font-size:17px; }
+}
+@media (min-width:521px) and (max-width:820px) {
+  .sidebar .side-nav a.active { font-size:26px; }
+}
+@media (max-width:520px) {
+  .sidebar .side-nav a.active { font-size:25px; }
+}
+
+/* Pie negro puro. No cambia los fondos de otros bloques. */
+.footer { background:#000; }
+
+/* Servicios: conservar orden original Wi-Fi (izq.) → WC (dcha.).
+   Alinear el primero hacia la derecha de su MITAD y el segundo hacia
+   la izquierda de la suya; sin intercambiar su lugar en el HTML.
+   Cálculo de altura real del dibujo SVG: Wi-Fi ocupa ~93.75% de la
+   altura de su lienzo; WC ocupa 100%. Igualar tinta visible, no sólo cajas. */
+.compact-footer .service-icons {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  justify-items:center;
+  gap:16px;
+  width:210px;
+  max-width:100%;
+  margin:8px auto 0;
+}
+.compact-footer .service-icons img.service-icon-wifi,
+.compact-footer .service-icons img.service-icon-wc {
+  display:block;
+  max-width:none;
+  width:auto;
+  object-fit:contain;
+}
+.compact-footer .service-icons img.service-icon-wifi {
+  height:36.27px; /* dibujo visible ≈ 34px */
+  justify-self:end;
+}
+.compact-footer .service-icons img.service-icon-wc {
+  height:34px; /* dibujo visible ≈ 34px */
+  justify-self:start;
+}
+@media (max-width:820px) {
+  .compact-footer .service-icons { width:190px; }
+  .compact-footer .service-icons img.service-icon-wifi {
+    height:32px; /* dibujo visible ≈ 30px */
+  }
+  .compact-footer .service-icons img.service-icon-wc {
+    height:30px; /* dibujo visible ≈ 30px */
+  }
+}
