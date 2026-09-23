@@ -2161,6 +2161,9 @@ body{
   border-color:#fff;
 }
 
+/* Reservas mobile: light photographic zoom-out (~9% at 393px wide). 
+   Reduced hero height keeps background-size:cover without empty bands;
+   title/phone remain bottom-right; desktop/map untouched. */
 /* Reservas mobile: restore the same black-and-white Plaza Mayor photograph
    used on desktop and place a slightly smaller title + phone at bottom right.
    Desktop layout, bottom interactive map and contact information unchanged. */
@@ -2169,7 +2172,7 @@ body{
     position:relative;
     display:block;
     aspect-ratio:auto;
-    min-height:clamp(265px,77vw,340px);
+    min-height:clamp(250px,70vw,310px);
     padding:0;
     background:#111 url('../images/plaza-mayor-lerma.webp') center center / cover no-repeat;
   }
