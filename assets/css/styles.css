@@ -2174,7 +2174,7 @@ body{
     aspect-ratio:auto;
     min-height:clamp(250px,70vw,310px);
     padding:0;
-    background:#111 url('../images/plaza-mayor-lerma.webp') 45% center / cover no-repeat;
+    background:#111 url('../images/plaza-mayor-lerma.webp') 55% center / cover no-repeat;
   }
   .contact-page .contact-hero::before {
     content:'';
