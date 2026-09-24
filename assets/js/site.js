@@ -119,22 +119,72 @@
   document.querySelectorAll('[data-gallery-slider]').forEach((slider,sliderIndex)=>{
     const slides=[...slider.querySelectorAll('.gallery-slide')];
     if(slides.length<2)return;
-    let i=0;
-    let timer;
+    const eventSlider=slider.classList.contains('eventos-media-cell');
+    const mobileMode=window.matchMedia('(max-width: 820px)');
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let i=0, timer=null, pauseTimer=null, touchX=null, touchY=null;
+    let lastSwipeAt=0;
     const baseDelay=Number(slider.dataset.galleryDelay)||5200;
     const mobileFirstDelay=Number(slider.dataset.mobileFirstDelay)||0;
-    const isMobile=()=>window.matchMedia('(max-width: 820px)').matches;
+    const isMobile=()=>mobileMode.matches;
     const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((slide,j)=>slide.classList.toggle('active',j===i));};
     const currentDelay=()=>mobileFirstDelay&&isMobile()&&i===0?mobileFirstDelay:baseDelay;
     const scheduleNext=()=>{
       timer=setTimeout(()=>{show(i+1);scheduleNext();},currentDelay());
     };
     show(0);
-    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    if(!reducedMotion.matches){
+      // Conservar el desfase inicial original de 1 s entre sliders desktop.
       const phaseOffset=isMobile()?0:sliderIndex*1000;
       if(phaseOffset){timer=setTimeout(scheduleNext,phaseOffset);}
       else{scheduleNext();}
     }
+
+    // Exclusivamente los 3 sliders de Eventos. No alterar las otras galerías.
+    if(!eventSlider)return;
+    const selectManually=n=>{
+      if(timer!==null){clearTimeout(timer);timer=null;}
+      if(pauseTimer!==null){clearTimeout(pauseTimer);pauseTimer=null;}
+      show(n);
+      if(reducedMotion.matches)return;
+      // La fotografía elegida permanece 7 s como máximo; después avanza
+      // y recupera el intervalo propio del slider (incluido el 7 s inicial
+      // de Asador en móvil cuando el ciclo vuelve a la primera imagen).
+      pauseTimer=setTimeout(()=>{
+        pauseTimer=null;
+        show(i+1);
+        scheduleNext();
+      },7000);
+    };
+    const syncInteraction=()=>{
+      slider.style.cursor=isMobile()?'auto':'pointer';
+      slider.style.touchAction=isMobile()?'pan-y pinch-zoom':'auto';
+    };
+    syncInteraction();
+    mobileMode.addEventListener('change',syncInteraction);
+    // Desktop: clic en media foto izquierda/derecha, sin botones visibles.
+    slider.addEventListener('click',e=>{
+      if(isMobile()||e.pointerType==='touch'||Date.now()-lastSwipeAt<650)return;
+      if(e.target.closest('a, button, input, select, textarea, [role="button"]'))return;
+      const rect=slider.getBoundingClientRect();
+      selectManually(i+(e.clientX<rect.left+rect.width/2?-1:1));
+    });
+    // Móvil: swipe horizontal; los gestos verticales conservan el scroll.
+    slider.addEventListener('touchstart',e=>{
+      if(!isMobile()||e.touches.length!==1){touchX=null;return;}
+      touchX=e.touches[0].clientX;
+      touchY=e.touches[0].clientY;
+    },{passive:true});
+    slider.addEventListener('touchend',e=>{
+      if(touchX===null||e.changedTouches.length!==1)return;
+      const dx=e.changedTouches[0].clientX-touchX;
+      const dy=e.changedTouches[0].clientY-touchY;
+      touchX=null;
+      if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy)*1.25)return;
+      lastSwipeAt=Date.now();
+      selectManually(i+(dx<0?1:-1));
+    },{passive:true});
+    slider.addEventListener('touchcancel',()=>{touchX=null;},{passive:true});
   });
 
   document.querySelectorAll('[data-event-slider]').forEach((slider,sliderIndex)=>{
