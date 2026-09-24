@@ -2208,3 +2208,26 @@ body{
     font-size:clamp(18px,4.9vw,20px);
   }
 }
+
+
+/* CARACOLES · HOME DISCOVER · 3 FOTOS · 24-09-2026
+   Misma duración y fundido que portada: 3 s / 1 s.
+   Sin cambiar la maquetación ni los demás sliders. */
+.home-discover .discover-photo-slider {
+  position:relative;
+  width:min(100%,360px);
+  aspect-ratio:1/1;
+  background:#111;
+  overflow:hidden;
+}
+.home-discover .discover-photo-slider .gallery-slide {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.home-discover .discover-photo-slider .gallery-slide.active {opacity:1;}
