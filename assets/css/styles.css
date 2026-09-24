@@ -2260,15 +2260,27 @@ body{
   .home-slider .slide[style*="index-portada-03-carnes-horno.webp"] {
     background-position:37% center;
   }
-  /* 04: mostrar el máximo posible del horno a la izquierda de la foto. */
-  .home-slider .slide[style*="index-portada-04-interior-horno.webp"] {
-    background-position:left center;
-  }
   /* 07: desplazar muy ligeramente el encuadre hacia la izquierda.
      Con cover, en ventanas anchas esta imagen no presenta sobrante
      horizontal: el mínimo aumento de escala permite moverla sin huecos. */
   .home-slider .slide[style*="index-portada-07-setas.webp"] {
     background-position:38% center;
     transform:translateX(-.55%) scale(1.02);
+  }
+}
+
+
+/* CARACOLES · PORTADA · ENCUADRES COMPARTIDOS Y MÓVIL · 24-09-2026
+   04 conserva el encuadre de desktop y lo comparte con móvil: mostrar
+   el lado izquierdo de la foto para que el horno aparezca hacia la derecha.
+   06 solamente en móvil: mostrar el lado derecho de la fotografía para que
+   el contenido visible se desplace al máximo hacia la izquierda.
+   No modifica el orden ni los tiempos del slider. */
+.home-slider .slide[style*="index-portada-04-interior-horno.webp"] {
+  background-position:left center;
+}
+@media (max-width:820px) {
+  .home-slider .slide[style*="index-portada-06-lechazo-horno.webp"] {
+    background-position:right center;
   }
 }
