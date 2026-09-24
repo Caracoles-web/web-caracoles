@@ -2231,3 +2231,32 @@ body{
   transition:opacity 1s ease;
 }
 .home-discover .discover-photo-slider .gallery-slide.active {opacity:1;}
+
+/* CARACOLES · PORTADA · ENCUADRES DESKTOP · 24-09-2026
+   Ajustes de composición sobre las fotos actuales, sin recortarlas ni
+   afectar a la versión móvil, al orden o a la transición del slider.
+   La captura rotulada como «01 interior» muestra en realidad el lechazo
+   servido (archivo 02); se ajusta la fotografía que aparece en la captura.
+*/
+@media (min-width:821px) {
+  /* Pata derecha del lechazo un poco más a la derecha del encuadre. */
+  .home-slider .slide[style*="index-portada-02-lechazo-servido.webp"] {
+    background-position:25% center;
+  }
+  /* Desplazamiento muy ligero para centrar las carnes. */
+  .home-slider .slide[style*="index-portada-03-carnes-horno.webp"] {
+    background-position:37% center;
+  }
+  /* Mostrar el máximo del horno situado a la izquierda de la fotografía. */
+  .home-slider .slide[style*="index-portada-04-interior-horno.webp"] {
+    background-position:left center;
+  }
+  /* Un poco más de contenido del lado izquierdo de las setas con trufa. */
+  .home-slider .slide[style*="index-portada-07-setas.webp"] {
+    background-position:10% center;
+  }
+  /* Centrar ópticamente las setas sobre fondo blanco. */
+  .home-slider .slide[style*="index-portada-08-setas.webp"] {
+    background-position:left center;
+  }
+}
