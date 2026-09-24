@@ -2232,31 +2232,45 @@ body{
 }
 .home-discover .discover-photo-slider .gallery-slide.active {opacity:1;}
 
-/* CARACOLES · PORTADA · ENCUADRES DESKTOP · 24-09-2026
-   Ajustes de composición sobre las fotos actuales, sin recortarlas ni
-   afectar a la versión móvil, al orden o a la transición del slider.
-   La captura rotulada como «01 interior» muestra en realidad el lechazo
-   servido (archivo 02); se ajusta la fotografía que aparece en la captura.
+/* CARACOLES · HOME · ENCUADRES INDIVIDUALES DESKTOP · 24-09-2026
+   En escritorio el slider usa background-attachment:fixed, que pinta la
+   imagen respecto al viewport completo: en muchas fotos no hay recorte
+   horizontal suficiente para que background-position surta efecto.
+   Solo en estas cinco fotos usar scroll/cover ligado al frame del slider.
+   Esto permite encuadrarlas sin cambiar escala, imagen, intervalo ni fundido.
+   El resto del slider y las vistas móviles conservan sus reglas originales.
+   Nota: la captura titulada '01 interior' corresponde visualmente al
+   archivo 02 (lechazo servido, pata derecha); se ajusta esa fotografía.
 */
 @media (min-width:821px) {
-  /* Pata derecha del lechazo un poco más a la derecha del encuadre. */
-  .home-slider .slide[style*="index-portada-02-lechazo-servido.webp"] {
-    background-position:25% center;
+  .home-slider .slide:is(
+    [style*="index-portada-02-lechazo-servido.webp"],
+    [style*="index-portada-03-carnes-horno.webp"],
+    [style*="index-portada-04-interior-horno.webp"],
+    [style*="index-portada-07-setas.webp"],
+    [style*="index-portada-08-setas.webp"]
+  ) {
+    background-attachment:scroll;
+    background-size:cover;
   }
-  /* Desplazamiento muy ligero para centrar las carnes. */
+  /* 02: llevar levemente la pata de la derecha hacia el borde derecho. */
+  .home-slider .slide[style*="index-portada-02-lechazo-servido.webp"] {
+    background-position:20% center;
+  }
+  /* 03: ajustar un poco el conjunto de carnes hacia la derecha. */
   .home-slider .slide[style*="index-portada-03-carnes-horno.webp"] {
     background-position:37% center;
   }
-  /* Mostrar el máximo del horno situado a la izquierda de la fotografía. */
+  /* 04: mostrar el máximo posible del horno a la izquierda de la foto. */
   .home-slider .slide[style*="index-portada-04-interior-horno.webp"] {
     background-position:left center;
   }
-  /* Un poco más de contenido del lado izquierdo de las setas con trufa. */
+  /* 07: desplazar ligeramente las setas con trufa hacia la derecha. */
   .home-slider .slide[style*="index-portada-07-setas.webp"] {
-    background-position:10% center;
+    background-position:35% center;
   }
-  /* Centrar ópticamente las setas sobre fondo blanco. */
+  /* 08: centrar ópticamente las setas del fondo blanco dentro del frame. */
   .home-slider .slide[style*="index-portada-08-setas.webp"] {
-    background-position:left center;
+    background-position:32% center;
   }
 }
