@@ -148,7 +148,19 @@
   });
   const slider=document.querySelector('[data-slider]');
   if(slider){
-    const slides=[...slider.querySelectorAll('.slide')];
+    const allSlides=[...slider.querySelectorAll('.slide')];
+    const mobileHomeSlider=window.matchMedia('(max-width: 820px)').matches;
+    const slides=mobileHomeSlider
+      ? allSlides.filter(s=>!(s.getAttribute('style')||'').includes('index-portada-07-setas.webp'))
+      : allSlides;
+    if(mobileHomeSlider){
+      allSlides.forEach(s=>{
+        if(!slides.includes(s)){
+          s.classList.remove('active');
+          s.style.display='none';
+        }
+      });
+    }
     const dots=[...slider.querySelectorAll('.slider-dots button')];
     let i=0,t;
     const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((s,j)=>s.classList.toggle('active',j===i));dots.forEach((d,j)=>d.classList.toggle('active',j===i));};
