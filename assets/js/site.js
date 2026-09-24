@@ -152,7 +152,7 @@
     const dots=[...slider.querySelectorAll('.slider-dots button')];
     let i=0,t;
     const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((s,j)=>s.classList.toggle('active',j===i));dots.forEach((d,j)=>d.classList.toggle('active',j===i));};
-    const start=()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;t=setInterval(()=>show(i+1),4000)};
+    const start=()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;t=setInterval(()=>show(i+1),3000)};
     dots.forEach((d,j)=>d.addEventListener('click',()=>{clearInterval(t);show(j);start()}));
     show(0);start();
   }
