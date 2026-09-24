@@ -2247,8 +2247,7 @@ body{
     [style*="index-portada-02-lechazo-servido.webp"],
     [style*="index-portada-03-carnes-horno.webp"],
     [style*="index-portada-04-interior-horno.webp"],
-    [style*="index-portada-07-setas.webp"],
-    [style*="index-portada-08-setas.webp"]
+    [style*="index-portada-07-setas.webp"]
   ) {
     background-attachment:scroll;
     background-size:cover;
@@ -2265,12 +2264,11 @@ body{
   .home-slider .slide[style*="index-portada-04-interior-horno.webp"] {
     background-position:left center;
   }
-  /* 07: desplazar ligeramente las setas con trufa hacia la derecha. */
+  /* 07: desplazar muy ligeramente el encuadre hacia la izquierda.
+     Con cover, en ventanas anchas esta imagen no presenta sobrante
+     horizontal: el mínimo aumento de escala permite moverla sin huecos. */
   .home-slider .slide[style*="index-portada-07-setas.webp"] {
-    background-position:35% center;
-  }
-  /* 08: centrar ópticamente las setas del fondo blanco dentro del frame. */
-  .home-slider .slide[style*="index-portada-08-setas.webp"] {
-    background-position:32% center;
+    background-position:38% center;
+    transform:translateX(-.55%) scale(1.02);
   }
 }
