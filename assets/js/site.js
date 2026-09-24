@@ -146,29 +146,102 @@
     show(0);
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setTimeout(()=>setInterval(()=>show(i+1),delay),sliderIndex*650);}
   });
+  // Portada: clic por mitades (desktop), deslizamiento (móvil) y pausa manual.
   const slider=document.querySelector('[data-slider]');
   if(slider){
+    const mobileMode=window.matchMedia('(max-width: 820px)');
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
     const allSlides=[...slider.querySelectorAll('.slide')];
-    const mobileHomeSlider=window.matchMedia('(max-width: 820px)').matches;
-    const slides=mobileHomeSlider
-      ? allSlides.filter(s=>!(s.getAttribute('style')||'').includes('index-portada-07-setas.webp'))
-      : allSlides;
-    if(mobileHomeSlider){
-      allSlides.forEach(s=>{
-        if(!slides.includes(s)){
-          s.classList.remove('active');
-          s.style.display='none';
-        }
-      });
-    }
     const dots=[...slider.querySelectorAll('.slider-dots button')];
-    let i=0,t;
-    const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((s,j)=>s.classList.toggle('active',j===i));dots.forEach((d,j)=>d.classList.toggle('active',j===i));};
-    const start=()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;t=setInterval(()=>show(i+1),3000)};
-    dots.forEach((d,j)=>d.addEventListener('click',()=>{clearInterval(t);show(j);start()}));
-    show(0);start();
-  }
+    const normalDelay=3000;
+    const manualPause=7000;
+    let slides=[], i=0, autoTimer=null, pauseTimer=null, touchX=null, touchY=null;
+    let lastSwipeAt=0;
 
+    const stopTimers=()=>{
+      if(autoTimer!==null){clearInterval(autoTimer);autoTimer=null;}
+      if(pauseTimer!==null){clearTimeout(pauseTimer);pauseTimer=null;}
+    };
+    const show=n=>{
+      if(!slides.length)return;
+      i=(n+slides.length)%slides.length;
+      allSlides.forEach(s=>s.classList.toggle('active',slides[i]===s));
+      // Los indicadores, si existen, conservan el índice físico del HTML.
+      dots.forEach((d,j)=>d.classList.toggle('active',allSlides[j]===slides[i]));
+    };
+    const startAuto=()=>{
+      stopTimers();
+      if(reducedMotion.matches||slides.length<2)return;
+      autoTimer=setInterval(()=>show(i+1),normalDelay);
+    };
+    const selectManually=n=>{
+      if(slides.length<2)return;
+      stopTimers();
+      show(n);
+      // La imagen elegida se mantiene hasta 7 s; después, ciclo habitual.
+      if(!reducedMotion.matches){
+        pauseTimer=setTimeout(()=>{
+          pauseTimer=null;
+          show(i+1);
+          autoTimer=setInterval(()=>show(i+1),normalDelay);
+        },manualPause);
+      }
+    };
+    const configureSlides=()=>{
+      const current=slides[i]||allSlides[0];
+      slides=mobileMode.matches
+        ? allSlides.filter(s=>!(s.getAttribute('style')||'').includes('index-portada-07-setas.webp'))
+        : allSlides;
+      allSlides.forEach(s=>{
+        if(slides.includes(s))s.style.removeProperty('display');
+        else{s.style.display='none';s.classList.remove('active');}
+      });
+      slider.style.cursor=mobileMode.matches?'auto':'pointer';
+      slider.style.touchAction=mobileMode.matches?'pan-y pinch-zoom':'auto';
+      const preserved=slides.indexOf(current);
+      show(preserved<0?Math.min(i,slides.length-1):preserved);
+    };
+
+    configureSlides();
+    startAuto();
+
+    // Desktop: clic izquierda = foto anterior; derecha = siguiente.
+    slider.addEventListener('click',e=>{
+      if(mobileMode.matches||e.pointerType==='touch'||Date.now()-lastSwipeAt<650)return;
+      if(e.target.closest('a, button, input, select, textarea, [role="button"]'))return;
+      const rect=slider.getBoundingClientRect();
+      selectManually(i+(e.clientX<rect.left+rect.width/2?-1:1));
+    });
+
+    // Móvil: swipe horizontal sin bloquear el scroll vertical habitual.
+    slider.addEventListener('touchstart',e=>{
+      if(!mobileMode.matches||e.touches.length!==1){touchX=null;return;}
+      touchX=e.touches[0].clientX;
+      touchY=e.touches[0].clientY;
+    },{passive:true});
+    slider.addEventListener('touchend',e=>{
+      if(touchX===null||e.changedTouches.length!==1)return;
+      const dx=e.changedTouches[0].clientX-touchX;
+      const dy=e.changedTouches[0].clientY-touchY;
+      touchX=null;
+      if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy)*1.25)return;
+      lastSwipeAt=Date.now();
+      selectManually(i+(dx<0?1:-1));
+    },{passive:true});
+    slider.addEventListener('touchcancel',()=>{touchX=null;},{passive:true});
+
+    // Mantener las opciones disponibles cuando cambia la anchura de pantalla.
+    mobileMode.addEventListener('change',()=>{
+      stopTimers();
+      configureSlides();
+      startAuto();
+    });
+    dots.forEach((d,j)=>d.addEventListener('click',e=>{
+      e.stopPropagation();
+      const targetIndex=slides.indexOf(allSlides[j]);
+      if(targetIndex!==-1)selectManually(targetIndex);
+    }));
+  }
 
   // Vídeo común: la portada es local y el iframe de YouTube-nocookie sólo nace tras el clic.
   document.querySelectorAll('.video-poster[data-youtube-id]').forEach(button=>{
