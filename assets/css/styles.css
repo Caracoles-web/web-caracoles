@@ -2825,8 +2825,17 @@ body{
   }
   .home-page .season-intro h2 {font-size:21px;}
 }
-/* CARACOLES · CORRECCIÓN FINAL · INDEX ESENCIAS · SOLO MÓVIL
-   Retira el recuadro blanco señalado y su texto; desktop conserva la entradilla. */
+
+
+/* CARACOLES · CARTA & VINOS · SOLO MÓVIL: panel de selección redundante
+   El enlace a la carta de vinos permanece en el panel negro con la copa.
+   Se reserva fondo negro bajo el botón antes del aviso blanco. */
 @media (max-width:820px) {
-  .home-page .season-intro {display:none!important;}
+  .carta-page .wine-section--wines .wine-selection-card {
+    display:none;
+  }
+  .carta-page .wine-section--wines {
+    padding-bottom:70px;
+    background:#000;
+  }
 }
