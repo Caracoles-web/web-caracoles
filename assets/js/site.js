@@ -86,6 +86,15 @@
   if(pdfMedia.addEventListener) pdfMedia.addEventListener('change',syncPdfLinks);
   else if(pdfMedia.addListener) pdfMedia.addListener(syncPdfLinks);
 
+  // Al regresar del visor PDF por el gesto "Atrás", algunos navegadores móviles
+  // restauran el foco del enlace desde la caché de navegación (bfcache).
+  // Limpiar exclusivamente el foco residual del CTA, sin cambiar la navegación.
+  window.addEventListener('pageshow',()=>{
+    if(!window.matchMedia('(hover:none) and (pointer:coarse)').matches)return;
+    const active=document.activeElement;
+    if(active && active.matches('.btn,.mini-btn,.carta-placeholder'))active.blur();
+  });
+
   document.querySelectorAll('[data-wine-slider]').forEach(slider=>{
     const slides=[...slider.querySelectorAll('.wine-slide')];
     if(slides.length<2)return;
