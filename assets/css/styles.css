@@ -2556,3 +2556,13 @@ body{
     border-left-color:#000;
   }
 }
+
+/* INDEX · ESENCIAS · SOLO DESKTOP · PIE EQUILIBRADO · 25-09-2026.
+   Igualar el espacio bajo la última línea al margen de 12px sobre las fotos.
+   No alterar dimensiones de fotos ni el texto superpuesto en móvil. */
+@media (min-width:821px) {
+  .home-page .season-card figcaption {
+    min-height:0;
+    padding-bottom:12px;
+  }
+}
