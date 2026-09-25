@@ -1699,12 +1699,12 @@ body{
   }
 }
 
-/* ===== HOME · ESENCIAS DE TEMPORADA · DESKTOP NEGRO + FOTOS 1:1 =====
+/* ===== HOME · ESENCIAS DE TEMPORADA · DESKTOP INTRO BLANCA + FOTOS 1:1 =====
    Solo desktop/tablet grande. */
 @media (min-width:821px){
   .season-intro{
-    background:#000000!important;
-    color:#fff!important;
+    background:#fff!important;
+    color:#000!important;
   }
   .season-grid,
   .season-card,
@@ -1714,7 +1714,10 @@ body{
   }
 
   .season-intro h2,
-  .season-intro p,
+  .season-intro p{
+    color:#000!important;
+  }
+
   .season-card figcaption strong,
   .season-card figcaption span{
     color:#fff!important;
@@ -2456,7 +2459,7 @@ body{
 
 /* ===== CARACOLES · INDEX / HORARIOS · 25-09-2026 =====
    Únicamente cambios visuales: se conservan contenidos, enlaces y SEO.
-   El encabezado «Esencias» conserva su fondo negro y texto blanco en desktop. */
+   El encabezado «Esencias» usa fondo blanco y texto negro en desktop. */
 .compact-footer .footer-grid--links .footer-hours .btn {
   font-size:14px; /* mismo tamaño que MAPA / MAP / PLAN */
   text-transform:uppercase;
