@@ -2500,3 +2500,42 @@ body{
   .home-page .season-card figcaption strong { font-size:19px; }
   .home-page .season-card figcaption span { font-size:16px; }
 }
+
+
+/* CARTA & VINOS · Introducción independiente de la selección (desktop/3 idiomas).
+   Conserva las coordenadas, tipografía y distribución anteriores; en móvil,
+   conserva la banda de título y la desaparición del párrafo. */
+.carta-page .wine-intro {
+  display:flow-root;
+  background:#000;
+  color:#fff;
+  padding:40px 7vw 0;
+}
+.carta-page .wine-intro .wine-heading-row {
+  background-color:inherit;
+}
+.carta-page .wine-section--wines {
+  padding-top:0;
+}
+@media (max-width:1100px) {
+  .carta-page .wine-intro {padding-left:5vw;padding-right:5vw;}
+}
+@media (max-width:820px) {
+  .carta-page .wine-intro {padding:0;}
+  .carta-page .wine-intro .wine-heading-row {
+    max-width:none;
+    margin:0 0 22px;
+    gap:0;
+  }
+  .carta-page .wine-intro .wine-heading-row h2 {
+    margin:0;
+    padding:16px clamp(18px,5vw,32px);
+    background:#fff;
+    color:#050505;
+    text-align:left;
+    border:0;
+    font-size:clamp(22px,6.2vw,31px);
+    line-height:1.12;
+  }
+  .carta-page .wine-intro .wine-heading-row p {display:none;}
+}
