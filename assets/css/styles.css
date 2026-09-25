@@ -2566,3 +2566,11 @@ body{
     padding-bottom:12px;
   }
 }
+
+/* CARTA & VINOS · Desktop: el fondo negro termina exactamente
+   al borde inferior de los paneles, sin franja vacía bajo ellos. */
+@media (min-width:821px) {
+  .carta-page .wine-section--wines {
+    padding-bottom:0;
+  }
+}
