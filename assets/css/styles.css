@@ -2600,3 +2600,49 @@ body{
     display:none;
   }
 }
+
+/* CARACOLES V11 · CTA TÁCTILES · 25-09-2026
+   En pantallas sin hover real, el :hover simulado puede quedar retenido tras
+   tocar un enlace o volver del visor PDF. Neutralizarlo SOLO al soltar;
+   durante la pulsación :active conserva el efecto blanco ya aprobado.
+   No cambia el hover en escritorio ni el foco visible para teclado. */
+@media (hover:none) and (pointer:coarse) {
+  .btn:hover:not(:active) {
+    background-color:#050505;
+    color:#fff;
+    border-color:#fff;
+  }
+  .btn.red:hover:not(:active) { color:#ff2933; }
+  .home-actions .wine-outline:hover:not(:active) {
+    color:#ff2431;
+    border-color:#ff2431;
+  }
+  .mini-btn:hover:not(:active),
+  .carta-page .mini-btn:hover:not(:active),
+  .carta-placeholder:hover:not(:active) {
+    background-color:rgba(0,0,0,.42);
+    color:#fff;
+    border-color:#fff;
+  }
+  .carta-page .mobile-wine-menu-btn:hover:not(:active) {
+    background-color:#050505;
+    color:#fff;
+    border-color:#fff;
+  }
+  /* El CTA CARTA conserva su fondo negro semitransparente sobre la foto. */
+  .carta-page .carta-hero-copy .btn:hover:not(:active) {
+    background-color:rgba(0,0,0,.58);
+    color:#fff;
+    border-color:#fff;
+  }
+  .compact-footer .footer-grid--links .footer-map .btn:hover:not(:active),
+  .compact-footer .footer-grid--links .footer-hours .btn:hover:not(:active) {
+    background-color:#050505;
+    color:#fff;
+    border-color:#fff;
+  }
+  .floating-phone-btn:hover:not(:active) {
+    transform:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.26);
+  }
+}
