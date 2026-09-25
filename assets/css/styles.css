@@ -1929,7 +1929,7 @@ body{
   .eventos-copy-cell .eventos-summary-copy,
   .eventos-copy-cell .eventos-contact-copy,
   .eventos-copy-cell .eventos-about-copy{
-    font-size:13.5px!important;
+    font-size:14.5px!important;
   }
 
   /* Asador Caracoles: ocultar solo en mobile las dos últimas líneas. */
@@ -2549,7 +2549,7 @@ body{
     padding:0 0 0 20px;
     border-left:1px solid #000000;
     color:#000000;
-    font-size:14px;
+    font-size:15px;
     line-height:1.55;
   }
   /* El bloque negro termina al borde inferior del contenido, sin altura vacía sobrante. */
