@@ -2839,3 +2839,11 @@ body{
     background:#000;
   }
 }
+
+/* INDEX · ESENCIAS · SOLO MÓVIL: retirar la tarjeta Bodega siglo XV
+   y su leyenda. Conservar la entradilla blanca y las otras 3 fotos 1:1. */
+@media (max-width:820px) {
+  .home-page .season-grid > .season-card:first-child {
+    display:none !important;
+  }
+}
