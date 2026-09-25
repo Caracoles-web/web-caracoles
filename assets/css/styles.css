@@ -2539,3 +2539,20 @@ body{
   }
   .carta-page .wine-intro .wine-heading-row p {display:none;}
 }
+
+
+/* CARTA & VINOS · Banda introductoria blanca, exclusivamente desktop.
+   Conservar exactamente la composición, medidas y posición existentes. */
+@media (min-width:821px) {
+  .carta-page .wine-intro {
+    background:#fff;
+    color:#000;
+  }
+  .carta-page .wine-intro .wine-heading-row h2 {
+    color:#000;
+  }
+  .carta-page .wine-intro .wine-heading-row p {
+    color:#000;
+    border-left-color:#000;
+  }
+}
