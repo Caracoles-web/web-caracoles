@@ -2847,3 +2847,45 @@ body{
     display:none !important;
   }
 }
+
+/* CARACOLES · quitar el destello azul al tocar enlaces y controles en moviles.
+   No se modifican los estilos :focus-visible para navegacion con teclado. */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* INDEX · LECHAZO · CARTA: mismo CTA y PDF que la portada de Carta y Vinos.
+   Únicamente móvil; se mantiene intacto el mosaico 1:1 de escritorio. */
+.home-page .home-discover .home-carta-btn {
+  display:none!important;
+}
+@media (max-width:820px) {
+  .home-page .home-discover .copy > .home-carta-btn {
+    display:inline-flex!important;
+    align-self:center;
+    min-width:126px;
+    margin:20px 0 0;
+    padding:8px 26px;
+    font-size:16px;
+    font-weight:900;
+    line-height:1.2;
+    background:#050505;
+    border:2px solid #050505;
+    color:#fff!important;
+    text-decoration:none;
+    text-shadow:none;
+  }
+  .home-page .home-discover .copy > .home-carta-btn:is(:hover,:active,:focus-visible) {
+    background:#fff;
+    border-color:#050505;
+    color:#050505!important;
+  }
+}
+@media (max-width:820px) and (hover:none) and (pointer:coarse) {
+  .home-page .home-discover .copy > .home-carta-btn:hover:not(:active) {
+    background:#050505;
+    border-color:#050505;
+    color:#fff!important;
+  }
+}
