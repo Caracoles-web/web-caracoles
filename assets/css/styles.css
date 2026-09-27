@@ -2960,3 +2960,12 @@ html {
     animation:none;
   }
 }
+
+/* CARACOLES · PORTADA · FOTO 09 LERMA · SOLO MÓVIL
+   Mostrar más del lado derecho del paisaje: la catedral entra en el encuadre.
+   El fondo se desplaza hacia la izquierda, sin alterar desktop ni otras fotos. */
+@media (max-width:820px) {
+  .home-slider .slide[style*="index-portada-09-lerma-paisaje.webp"] {
+    background-position:right center;
+  }
+}
