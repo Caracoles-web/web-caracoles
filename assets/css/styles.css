@@ -2902,3 +2902,12 @@ html {
     color:#fff!important;
   }
 }
+
+/* CARACOLES · móvil: trazo verde WhatsApp en ambos botones de teléfono.
+   Solo cambia currentColor del SVG; se mantienen fondo granate 3D y diámetro. */
+@media (max-width:820px) {
+  .floating-phone-btn,
+  .menu-phone-btn {
+    color:#25D366;
+  }
+}
