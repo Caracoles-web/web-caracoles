@@ -83,6 +83,19 @@
     });
   };
   syncPdfLinks();
+
+  // Cada apertura de CARTA o VINOS solicita una URL nueva sin renombrar los PDF.
+  // El navegador mantiene la misma navegacion: pestana en desktop, misma en movil.
+  let lastPdfVersion=0;
+  document.querySelectorAll('a[data-pdf-viewer]').forEach(link=>{
+    link.addEventListener('click',()=>{
+      lastPdfVersion=Math.max(Date.now(),lastPdfVersion+1);
+      const url=new URL(link.href,document.baseURI);
+      url.searchParams.set('v',String(lastPdfVersion));
+      link.href=url.href;
+    });
+  });
+
   if(pdfMedia.addEventListener) pdfMedia.addEventListener('change',syncPdfLinks);
   else if(pdfMedia.addListener) pdfMedia.addListener(syncPdfLinks);
 
@@ -320,5 +333,23 @@
       button.replaceWith(wrap);
     },{once:true});
   });
+
+  // Cache controlada para HTML, CSS, JS y fotografias de la web.
+  // El SW revalida en cada nueva carga, sin renombrar archivos ni editar HTML.
+  // No afecta a los PDF: ellos llevan su propio identificador en cada clic.
+  if('serviceWorker' in navigator &&
+     (location.protocol==='https:' || ['localhost','127.0.0.1'].includes(location.hostname))){
+    const currentScript=document.currentScript;
+    if(currentScript && currentScript.src){
+      const siteRoot=new URL('../../',currentScript.src);
+      const workerURL=new URL('sw.js',siteRoot);
+      window.addEventListener('load',()=>{
+        navigator.serviceWorker.register(workerURL.href,{
+          scope:siteRoot.pathname,
+          updateViaCache:'none'
+        }).catch(()=>{});
+      },{once:true});
+    }
+  }
 
 })();
