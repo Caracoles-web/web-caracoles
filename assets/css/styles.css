@@ -2902,3 +2902,27 @@ html {
     color:#fff!important;
   }
 }
+
+
+/* CARACOLES · 27-09-2026 · CORTINA MÓVIL / ESTABILIDAD ENTRE IDIOMAS
+   Safari/Chrome iOS pueden cambiar 100dvh al navegar entre ES/EN/FR,
+   desplazando el teléfono y las RRSS hasta el borde. 100svh mantiene
+   la misma altura de referencia durante toda la navegación. En pantallas
+   pequeñas, la cortina conserva scroll en lugar de comprimir sus bloques.
+   Desktop, cabecera y aspecto del teléfono quedan intactos. */
+@media (max-width:820px){
+  .sidebar{
+    bottom:auto;
+    height:calc(100vh - 74px); /* respaldo navegadores antiguos */
+    height:calc(100svh - 74px);
+    max-height:calc(100svh - 74px);
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior-y:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+  .sidebar .side-nav,
+  .sidebar .sidebar-bottom{
+    flex-shrink:0;
+  }
+}
