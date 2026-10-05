@@ -2969,3 +2969,9 @@ html {
     background-position:right center;
   }
 }
+
+/* CARACOLES · 06-10-2026 · SIDEBAR DESKTOP 238 PX
+   Cambio mínimo: solo escritorio/tablet >820px. Mobile permanece intacto. */
+@media (min-width:821px){
+  :root{--sidebar:238px;}
+}
