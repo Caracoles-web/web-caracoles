@@ -226,12 +226,13 @@
     const allSlides=[...slider.querySelectorAll('.slide')];
     const dots=[...slider.querySelectorAll('.slider-dots button')];
     const normalDelay=3000;
+    const firstDelay=Number(slider.dataset.firstDelay)||normalDelay;
     const manualPause=7000;
     let slides=[], i=0, autoTimer=null, pauseTimer=null, touchX=null, touchY=null;
     let lastSwipeAt=0;
 
     const stopTimers=()=>{
-      if(autoTimer!==null){clearInterval(autoTimer);autoTimer=null;}
+      if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null;}
       if(pauseTimer!==null){clearTimeout(pauseTimer);pauseTimer=null;}
     };
     const show=n=>{
@@ -241,10 +242,18 @@
       // Los indicadores, si existen, conservan el índice físico del HTML.
       dots.forEach((d,j)=>d.classList.toggle('active',allSlides[j]===slides[i]));
     };
+    const currentAutoDelay=()=>slides[i]===allSlides[0]?firstDelay:normalDelay;
+    const scheduleAuto=()=>{
+      if(reducedMotion.matches||slides.length<2)return;
+      autoTimer=setTimeout(()=>{
+        autoTimer=null;
+        show(i+1);
+        scheduleAuto();
+      },currentAutoDelay());
+    };
     const startAuto=()=>{
       stopTimers();
-      if(reducedMotion.matches||slides.length<2)return;
-      autoTimer=setInterval(()=>show(i+1),normalDelay);
+      scheduleAuto();
     };
     const selectManually=n=>{
       if(slides.length<2)return;
@@ -255,7 +264,7 @@
         pauseTimer=setTimeout(()=>{
           pauseTimer=null;
           show(i+1);
-          autoTimer=setInterval(()=>show(i+1),normalDelay);
+          scheduleAuto();
         },manualPause);
       }
     };
