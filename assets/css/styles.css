@@ -2976,9 +2976,9 @@ html {
    Desktop conserva la imagen nº 1 actual. */
 @media (max-width:820px) {
   .home-slider .slide.home-slide-first {
-    background-image:url('../images/LERMA_1618_mobile.webp') !important;
+    background-image:url('../images/LERMA_1618_MOBILE.webp') !important;
     background-position:center bottom !important;
-    background-size:100% auto !important;
+    background-size:auto 100% !important;
     background-repeat:no-repeat !important;
   }
 }
