@@ -2971,11 +2971,12 @@ html {
 }
 
 /* CARACOLES · PORTADA · FOTO 01 SOLO MÓVIL · 09-10-2026
-   Sustituir únicamente en móvil la primera imagen del slider de portada.
-   Desktop conserva LERMA_1618.webp como primera imagen.
+   Sustituir en móvil la primera imagen del slider por la versión verticalizada.
+   Anclar abajo y centrar el pueblo. Desktop conserva la imagen nº 1 actual.
    No altera el resto del slider ni sus particularidades. */
 @media (max-width:820px) {
   .home-slider .slide.home-slide-first {
     background-image:url('../images/LERMA_1618_mobile.webp') !important;
+    background-position:center bottom !important;
   }
 }
