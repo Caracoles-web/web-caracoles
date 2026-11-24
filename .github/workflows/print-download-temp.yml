@@ -16,6 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Guardar run id
+        run: |
+          printf '%s\n' "${{ github.run_id }}" > PRINT_RUN_ID.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PRINT_RUN_ID.txt
+          git commit -m "Guarda run id temporal de entrega"
+          git push
+
       - name: Reconstruir PDF
         run: |
           mkdir -p entrega
@@ -28,12 +37,3 @@ jobs:
           name: carta-vinos-impresa
           path: entrega/CARTA_VINOS_IMPRESA.pdf
           if-no-files-found: error
-
-      - name: Guardar run id
-        run: |
-          printf '%s\n' "${{ github.run_id }}" > PRINT_RUN_ID.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add PRINT_RUN_ID.txt
-          git commit -m "Guarda run id temporal de entrega"
-          git push
