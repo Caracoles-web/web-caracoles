@@ -5,25 +5,35 @@ on:
     branches:
       - main
     paths:
-      - "PRINT_DOWNLOAD_TRIGGER.txt"
+      - "PRINT_ARTIFACT_TRIGGER.txt"
 
 permissions:
   contents: write
 
 jobs:
-  decode:
+  deliver:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Decodificar PDF
+
+      - name: Reconstruir PDF
         run: |
-          mkdir -p tmp-download
-          base64 -d ".tmp-print/CARTA_VINOS_IMPRESA.pdf.b64" > "tmp-download/CARTA_VINOS_IMPRESA.pdf"
-          test -s "tmp-download/CARTA_VINOS_IMPRESA.pdf"
-      - name: Guardar temporalmente
+          mkdir -p entrega
+          base64 -d ".tmp-print/CARTA_VINOS_IMPRESA.pdf.b64" > "entrega/CARTA_VINOS_IMPRESA.pdf"
+          test -s "entrega/CARTA_VINOS_IMPRESA.pdf"
+
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: carta-vinos-impresa
+          path: entrega/CARTA_VINOS_IMPRESA.pdf
+          if-no-files-found: error
+
+      - name: Guardar run id
         run: |
+          printf '%s\n' "${{ github.run_id }}" > PRINT_RUN_ID.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "tmp-download/CARTA_VINOS_IMPRESA.pdf"
-          git commit -m "Genera PDF temporal para descarga"
+          git add PRINT_RUN_ID.txt
+          git commit -m "Guarda run id temporal de entrega"
           git push
