@@ -1,0 +1,29 @@
+name: Entrega PDF temporal
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "PRINT_DOWNLOAD_TRIGGER.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Decodificar PDF
+        run: |
+          mkdir -p tmp-download
+          base64 -d ".tmp-print/CARTA_VINOS_IMPRESA.pdf.b64" > "tmp-download/CARTA_VINOS_IMPRESA.pdf"
+          test -s "tmp-download/CARTA_VINOS_IMPRESA.pdf"
+      - name: Guardar temporalmente
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "tmp-download/CARTA_VINOS_IMPRESA.pdf"
+          git commit -m "Genera PDF temporal para descarga"
+          git push
